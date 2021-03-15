@@ -12,7 +12,6 @@ Simple Is Better aims to be a minimal configuration file format that's easy to r
 
 ## Table of contents
 
-<!-- TODO: update links -->
 - [Spec](#spec)
 - [Comment](#comment)
 - [Key/Value Pair](#keyvalue-pair)
@@ -21,9 +20,11 @@ Simple Is Better aims to be a minimal configuration file format that's easy to r
 - [Integer](#integer)
 - [Float](#float)
 - [Boolean](#boolean)
-- [Offset Date-Time](#offset-date-time)
 - [Object](#object)
 - [Array](#array)
+- [Variables](#variables)
+- [Environment variables](#environment-variables)
+- [Imports](#imports)
 - [Filename Extension](#filename-extension)
 - [MIME Type](#mime-type)
 <!-- - [ABNF Grammar](#abnf-grammar) -->
@@ -69,12 +70,8 @@ Values must have one of the following types.
 - [Float](#float)
 - [Boolean](#boolean)
 - [Offset Date-Time](#offset-date-time)
-<!-- - [Local Date-Time](#local-date-time)
-- [Local Date](#local-date)
-- [Local Time](#local-time) -->
 - [Object](#object)
 - [Array](#array)
-<!-- - [Inline Table](#inline-table) -->
 
 Unspecified values are invalid.
 
@@ -105,63 +102,11 @@ bare-key: "value"
 1234: "value"
 ```
 
-<!-- TODO: analyse if remove -->
-<!-- **Quoted keys** follow the exact same rules as either basic strings or literal
-strings and allow you to use a much broader set of key names. Best practice is
-to use bare keys except when absolutely necessary.
+A bare key must be non-empty.
 
 ```yaml
-"127.0.0.1": "value"
-"character encoding": "value"
-"ʎǝʞ": "value"
-'key2': "value"
-'quoted "value"': "value"
-``` -->
-
-A bare key must be non-empty<!-- , but an empty quoted key is allowed (though discouraged). -->
-
-```yaml
-= "no key name"  # INVALID
+: "no key name"  # INVALID
 ```
-
-<!-- **Dotted keys** are a sequence of bare or quoted keys joined with a dot. This
-allows for grouping similar properties together:
-
-```yaml
-name = "Orange"
-physical.color = "orange"
-physical.shape = "round"
-site."google.com" = true
-```
-
-In JSON land, that would give you the following structure:
-
-```json
-{
-  "name": "Orange",
-  "physical": {
-    "color": "orange",
-    "shape": "round"
-  },
-  "site": {
-    "google.com": true
-  }
-}
-```
-
-For details regarding the tables that dotted keys define, refer to the
-[Table](#table) section below.
-
-Whitespace around dot-separated parts is ignored. However, best practice is to
-not use any extraneous whitespace.
-
-```yaml
-fruit.name = "banana"     # this is best practice
-fruit. color = "yellow"    # same as fruit.color
-fruit . flavor = "banana"   # same as fruit.flavor
-```
-
-Indentation is treated as whitespace and ignored. -->
 
 Defining a key multiple times is invalid.
 
@@ -170,75 +115,7 @@ Defining a key multiple times is invalid.
 name: "Tom"
 name: "Pradyun"
 ```
-<!-- 
-Note that bare keys and quoted keys are equivalent:
 
-```
-# THIS WILL NOT WORK
-spelling = "favorite"
-"spelling" = "favourite"
-``` -->
-
-<!-- As long as a key hasn't been directly defined, you may still write to it and
-to names within it.
-
-```yaml
-# This makes the key "fruit" into a table.
-fruit.apple.smooth = true
-
-# So then you can add to the table "fruit" like so:
-fruit.orange = 2
-```
-
-```yaml
-# THE FOLLOWING IS INVALID
-
-# This defines the value of fruit.apple to be an integer.
-fruit.apple = 1
-
-# But then this treats fruit.apple like it's a table.
-# You can't turn an integer into a table.
-fruit.apple.smooth = true
-```
-
-Defining dotted keys out-of-order is discouraged.
-
-```yaml
-# VALID BUT DISCOURAGED
-
-apple.type = "fruit"
-orange.type = "fruit"
-
-apple.skin = "thin"
-orange.skin = "thick"
-
-apple.color = "red"
-orange.color = "orange"
-```
-
-```yaml
-# RECOMMENDED
-
-apple.type = "fruit"
-apple.skin = "thin"
-apple.color = "red"
-
-orange.type = "fruit"
-orange.skin = "thick"
-orange.color = "orange"
-``` -->
-
-<!-- Since bare keys can be composed of only ASCII integers, it is possible to write dotted keys that look like floats but are 2-part dotted keys. Don't do this unless you have a good reason to (you probably don't).
-
-```yaml
-3.14159 = "pi"
-```
-
-The above Gura maps to the following JSON.
-
-```json
-{ "3": { "14159": "pi" } }
-``` -->
 
 ### Null
 
@@ -318,20 +195,6 @@ str3: "\
        "
 ```
 
-<!-- Any Unicode character may be used except those that must be escaped: backslash and the control characters other than tab, line feed, and carriage return (U+0000 to U+0008, U+000B, U+000C, U+000E to U+001F, U+007F).
-
-You can write a quotation mark, or two adjacent quotation marks, anywhere inside a multi-line basic string. They can also be written just inside the delimiters.
-
-```yaml
-str4: """Here are two quotation marks: "". Simple enough."""
-# str5: """Here are three quotation marks: """."""  # INVALID
-str5: """Here are three quotation marks: ""\"."""
-str6: """Here are fifteen quotation marks: ""\"""\"""\"""\"""\"."""
-
-# "This," she said, "is just a pointless statement."
-str7: """"This," she said, "is just a pointless statement.""""
-``` -->
-
 If you're a frequent specifier of Windows paths or regular expressions, then having to escape backslashes quickly becomes tedious and error-prone. To help, Gura supports literal strings which do not allow escaping at all.
 
 **Literal strings** are surrounded by three quotation marks. Like basic strings, they must appear on a single line:
@@ -357,19 +220,6 @@ trimmed in raw strings.
    is preserved.
 """
 ```
-
-<!-- You can write 1 or 2 single quotes anywhere within a multi-line literal string,
-but sequences of three or more single quotes are not permitted.
-
-```yaml
-quot15 = '''Here are fifteen quotation marks: """""""""""""""'''
-
-# apos15 = '''Here are fifteen apostrophes: ''''''''''''''''''  # INVALID
-apos15 = "Here are fifteen apostrophes: '''''''''''''''"
-
-# 'That,' she said, 'is still pointless.'
-str = ''''That,' she said, 'is still pointless.''''
-``` -->
 
 Control characters other than tab are not permitted in a literal string. Thus, for binary data, it is recommended that you use Base64 or another suitable ASCII or UTF-8 encoding. The handling of that encoding will be application-specific.
 
@@ -549,6 +399,97 @@ integers3: [
   1,
   2, # this is ok
 ]
+```
+
+
+### Variables
+
+You can define variables. They start with a at sign, a name and a colon. A variable name has to respect the same regex as keys.
+
+```yaml
+@my_string_var: "127.0.0.1"
+@my_integer_var: 8080
+@my_bool_var: true
+
+nginx:
+  host: @my_string_var
+  port: @my_integer_var
+  native_auth: @my_bool_var
+```
+
+All the variables must be specified any line before the line where its value is used.
+
+Variables can be used in basic strings:
+
+```yaml
+@name: "Gura"
+key: "@name is cool"
+```
+
+If this behavior is not desired, you can use literal strings.
+
+
+### Environment variables
+
+You can access to define environment variables using `$` sign.
+
+```yaml
+service:
+  postgres:
+    environment:
+      user: $DB_USER
+      password: $DB_PASS
+
+# You can store its value in a variable too
+@my_path: $PATH
+```
+
+Like normal variables, environment variables can be used in basic strings too:
+
+```yaml
+key: "My system path is $PATH"
+```
+
+If this behavior is not desired, you can use literal strings.
+
+
+### Imports
+
+You can import one or more Gura files using the `import` statement. All the keys and variables defined on them will be available in the file which is importing.
+
+The order of `import` is respected.
+
+
+**one.ura**:
+
+```yaml
+life: 42
+```
+
+**two.ura**:
+
+```yaml
+import "one.ura"
+
+@my_var: true
+```
+
+**three.ura**:
+
+```yaml
+@name: "Elisa"
+```
+
+**main.ura**:
+
+```yaml
+import "two.ura"
+import "three.ura"
+
+# Life, @my_var and @name are available here
+my_name: @name
+
+# life: "some value" # This WILL NOT work as it is defined in one.ura which is included in two.ura
 ```
 
 
