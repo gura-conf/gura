@@ -1,33 +1,35 @@
-# Simple Is Better
+# Gura
 
-Simple Is Better configuration file
+Gura configuration file
 
 By Jware solutions.
 
 
-## Objectives
-
-Simple Is Better aims to be a minimal configuration file format that's easy to read due to its similarity with YAML. The key of the language is that there is one and only one way to do things. That feature make it ease to learn, parse, implement and understand.
-
-
 ## Table of contents
 
+- [Objectives](#objectives)
 - [Spec](#spec)
-- [Comment](#comment)
-- [Key/Value Pair](#keyvalue-pair)
-- [Keys](#keys)
-- [String](#string)
-- [Integer](#integer)
-- [Float](#float)
-- [Boolean](#boolean)
-- [Object](#object)
-- [Array](#array)
-- [Variables](#variables)
-- [Environment variables](#environment-variables)
-- [Imports](#imports)
-- [Filename Extension](#filename-extension)
-- [MIME Type](#mime-type)
+  - [Comment](#comment)
+  - [Key/Value Pair](#keyvalue-pair)
+  - [Keys](#keys)
+  - [Null](#null)
+  - [String](#string)
+  - [Integer](#integer)
+  - [Float](#float)
+  - [Boolean](#boolean)
+  - [Object](#object)
+  - [Array](#array)
+  - [Variables](#variables)
+  - [Imports](#imports)
+  - [Filename Extension](#filename-extension)
+  - [MIME Type](#mime-type)
+- [License](#license)
 <!-- - [ABNF Grammar](#abnf-grammar) -->
+
+
+## Objectives
+
+Gura aims to be a minimal configuration file format that's easy to read due to its similarity with YAML. The key of the language is that there is one and only one way to do things. That feature make it ease to learn, parse, implement and understand.
 
 
 ## Spec
@@ -404,34 +406,38 @@ integers3: [
 
 ### Variables
 
-You can define variables. They start with a at sign, a name and a colon. A variable name has to respect the same regex as keys.
+You can define variables. They start with a `$` sign, a name and a colon. A variable name has to respect the same regex as keys.
 
 ```yaml
-@my_string_var: "127.0.0.1"
-@my_integer_var: 8080
-@my_bool_var: true
+$my_string_var: "127.0.0.1"
+$my_integer_var: 8080
+$my_bool_var: true
 
 nginx:
-  host: @my_string_var
-  port: @my_integer_var
-  native_auth: @my_bool_var
+  host: $my_string_var
+  port: $my_integer_var
+  native_auth: $my_bool_var
 ```
 
-All the variables must be specified any line before the line where its value is used.
+Variables can not be used as key.
+
+
+```yaml
+$hostkey: "host"
+nginx:
+    $hostkey : 4 # INVALID
+```
+
+Variables must be specified before they are used, in source code order. Redefining variables must raise a parser error, even when defined in different files (see [imports](#imports)). 
 
 Variables can be used in basic strings:
 
 ```yaml
-@name: "Gura"
-key: "@name is cool"
+$name: "Gura"
+key: "$name is cool"
 ```
 
-If this behavior is not desired, you can use literal strings.
-
-
-### Environment variables
-
-You can access to define environment variables using `$` sign.
+Environment variables can be accessed using `$` sign too.
 
 ```yaml
 service:
@@ -441,23 +447,23 @@ service:
       password: $DB_PASS
 
 # You can store its value in a variable too
-@my_path: $PATH
+$my_path: $PATH
+
+# You can replace environment variables like normal ones. After all, environment variables are normal variables defined before parsing.
+$PATH: "Another value"
 ```
 
-Like normal variables, environment variables can be used in basic strings too:
+When a variable is used Gura looks for the definition in the current file and the imported ones. If it is not defined, checks for available environment variables, if it is not, it must raise an error.
 
-```yaml
-key: "My system path is $PATH"
-```
-
-If this behavior is not desired, you can use literal strings.
 
 
 ### Imports
 
-You can import one or more Gura files using the `import` statement. All the keys and variables defined on them will be available in the file which is importing.
+You can import one or more Gura files using an `import` statement. The effect of importing a file is the same as replacing the import by the file's contents. Therefore, all the keys and variables defined on them will be available in the file which is importing.
 
-The order of `import` is respected.
+<!-- TODO: analyze require vs include https://www.w3schools.com/PHP/php_includes.asp -->
+
+A file can only be imported once. Re-importing a file must raise a parsing error.
 
 
 **one.ura**:
@@ -471,13 +477,13 @@ life: 42
 ```yaml
 import "one.ura"
 
-@my_var: true
+$my_var: true
 ```
 
 **three.ura**:
 
 ```yaml
-@name: "Elisa"
+$name: "Elisa"
 ```
 
 **main.ura**:
@@ -486,8 +492,8 @@ import "one.ura"
 import "two.ura"
 import "three.ura"
 
-# Life, @my_var and @name are available here
-my_name: @name
+# Life, $my_var and $name are available here
+my_name: $name
 
 # life: "some value" # This WILL NOT work as it is defined in one.ura which is included in two.ura
 ```
@@ -507,3 +513,8 @@ When transferring Gura files over the internet, the appropriate MIME type is `ap
 A formal description of Gura's syntax is available, as a separate [ABNF file][abnf].
 
 [abnf]: ./toml.abnf -->
+
+
+## License
+
+Gura is distributed under the terms of the MIT license.
