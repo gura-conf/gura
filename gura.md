@@ -201,7 +201,7 @@ If you're a frequent specifier of Windows paths or regular expressions, then hav
 
 **Literal strings** are surrounded by three quotation marks. Like basic strings, they must appear on a single line:
 
-```
+```yaml
 # What you see is what you get.
 winpath: """C:\Users\nodejs\templates"""
 winpath2: """\\ServerX\admin$\system32\"""
@@ -507,12 +507,11 @@ Gura files should use the extension `.ura`.
 
 When transferring Gura files over the internet, the appropriate MIME type is `application/gura`.
 
-<!-- TODO: complete -->
-<!-- ### ABNF Grammar
+### ABNF Grammar
 
 A formal description of Gura's syntax is available, as a separate [ABNF file][abnf].
 
-[abnf]: ./toml.abnf -->
+[abnf]: ./gura.abnf
 
 
 ## License
