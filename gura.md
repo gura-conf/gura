@@ -156,9 +156,9 @@ For convenience, some popular characters have a compact escape sequence.
 
 Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms. The escape codes must be valid Unicode [scalar values](https://unicode.org/glossary/#unicode_scalar_value).
 
-All other escape sequences not listed above are reserved; if they are used, TOML should produce an error.
+All other escape sequences not listed above are reserved; if they are used, Gura should produce an error.
 
-Sometimes you need to express passages of text (e.g. translation files) or would like to break up a very long string into multiple lines. TOML makes this easy.
+Sometimes you need to express passages of text (e.g. translation files) or would like to break up a very long string into multiple lines. Gura makes this easy.
 
 **Multi-line basic strings** are surrounded by three quotation marks on each side and allow newlines. A newline immediately following the opening delimiter will be trimmed. All other whitespace and newline characters remain intact.
 
@@ -168,7 +168,7 @@ Roses are red
 Violets are blue"""
 ```
 
-TOML parsers should feel free to normalize newline to whatever makes sense for their platform.
+Gura parsers should feel free to normalize newline to whatever makes sense for their platform.
 
 ```yaml
 # On a Unix system, the above multi-line string will most likely be the same as:
@@ -212,7 +212,7 @@ str6: """Here are fifteen quotation marks: ""\"""\"""\"""\"""\"."""
 str7: """"This," she said, "is just a pointless statement.""""
 ```
 
-If you're a frequent specifier of Windows paths or regular expressions, then having to escape backslashes quickly becomes tedious and error-prone. To help, TOML supports literal strings which do not allow escaping at all.
+If you're a frequent specifier of Windows paths or regular expressions, then having to escape backslashes quickly becomes tedious and error-prone. To help, Gura supports literal strings which do not allow escaping at all.
 
 **Literal strings** are surrounded by single quotes. Like basic strings, they must appear on a single line:
 
@@ -224,7 +224,7 @@ quoted: 'Tom "Dubs" Preston-Werner'
 regex: '<\i\c*\s*>'
 ```
 
-Since there is no escaping, there is no way to write a single quote inside a literal string enclosed by single quotes. Luckily, TOML supports a multi-line version of literal strings that solves this problem.
+Since there is no escaping, there is no way to write a single quote inside a literal string enclosed by single quotes. Luckily, Gura supports a multi-line version of literal strings that solves this problem.
 
 **Multi-line literal strings** are surrounded by three single quotes on each side and allow newlines. Like literal strings, there is no escaping whatsoever. A newline immediately following the opening delimiter will be trimmed. All other content between the delimiters is interpreted as-is without modification.
 
