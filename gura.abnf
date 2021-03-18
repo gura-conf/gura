@@ -17,9 +17,15 @@
 gura = expression *( newline expression )
 
 expression =  ws [ comment ]
+expression =/ ws variable-definition ws [ comment ]
 expression =/ object
 ; expression =/ keyval-with-spaces
 ; expression =/ ws object ws [ comment ]
+
+;; Variables
+dollar-sign =  %x24  ; $
+variable-definition = dollar-sign keyval ws [ comment ]
+variable-value = ws dollar-sign unquoted-key ws [ comment]
 
 
 ; Objects
@@ -61,8 +67,8 @@ unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
 ; keyval-sep = ws %x3D ws ; =
 keyval-sep = ws %x3A ws ; ':' Colon
 
-; TODO: add objects and imports
-val = string / boolean / array / float / integer ; inline-table / date-time / 
+;; Values
+val = string / boolean / array / float / integer / variable-value ; inline-table / date-time / 
 
 ;; String
 string = ml-basic-string / basic-string / ml-literal-string / literal-string
