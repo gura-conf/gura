@@ -18,12 +18,12 @@ gura = expression *( newline expression )
 
 expression =  ws [ comment ]
 expression =/ object
-expression =/ keyval-with-spaces
+; expression =/ keyval-with-spaces
 ; expression =/ ws object ws [ comment ]
 
 
 ; Objects
-object = ws unquoted-key keyval-sep ws [comment] [ newline object ]
+object = ws unquoted-key keyval-sep ws [comment]  newline object
 object =/ keyval-with-spaces *( newline object )
 ; expression =/ ws table ws [ comment ]
 
