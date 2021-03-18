@@ -130,8 +130,9 @@ none_value: null
 
 ### String
 
-Unlike YAML, in Gura there is only one way to define a string: using double quotes.
 There are four ways to express strings: basic, multi-line basic, literal, and multi-line literal. All strings must contain only valid UTF-8 characters.
+
+Unlike YAML, unquoted strings are not allowed.
 
 **Basic strings** are surrounded by quotation marks (`"`). Any Unicode character may be used except those that must be escaped: quotation mark, backslash, and the control characters other than tab (U+0000 to U+0008, U+000A to U+001F, U+007F).
 
@@ -155,19 +156,19 @@ For convenience, some popular characters have a compact escape sequence.
 
 Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms. The escape codes must be valid Unicode [scalar values](https://unicode.org/glossary/#unicode_scalar_value).
 
-All other escape sequences not listed above are reserved; if they are used, Gura should produce an error.
+All other escape sequences not listed above are reserved; if they are used, TOML should produce an error.
 
-Sometimes you need to express passages of text (e.g. translation files) or would like to break up a very long string into multiple lines. Gura makes this easy.
+Sometimes you need to express passages of text (e.g. translation files) or would like to break up a very long string into multiple lines. TOML makes this easy.
 
-**Multi-line basic strings** are surrounded by quotation marks too and allow newlines. A newline immediately following the opening delimiter will be trimmed. All other whitespace and newline characters remain intact.
+**Multi-line basic strings** are surrounded by three quotation marks on each side and allow newlines. A newline immediately following the opening delimiter will be trimmed. All other whitespace and newline characters remain intact.
 
 ```yaml
-str1: "
+str1: """
 Roses are red
-Violets are blue"
+Violets are blue"""
 ```
 
-Gura parsers should feel free to normalize newline to whatever makes sense for their platform.
+TOML parsers should feel free to normalize newline to whatever makes sense for their platform.
 
 ```yaml
 # On a Unix system, the above multi-line string will most likely be the same as:
@@ -183,44 +184,70 @@ For writing long strings without introducing extraneous whitespace, use a "line 
 # The following strings are byte-for-byte equivalent:
 str1: "The quick brown fox jumps over the lazy dog."
 
-str2: "
+str2: """
 The quick brown \
 
 
   fox jumps over \
-    the lazy dog."
+    the lazy dog."""
 
-str3: "\
+str3: """\
        The quick brown \
        fox jumps over \
        the lazy dog.\
-       "
+       """
 ```
 
-If you're a frequent specifier of Windows paths or regular expressions, then having to escape backslashes quickly becomes tedious and error-prone. To help, Gura supports literal strings which do not allow escaping at all.
+Any Unicode character may be used except those that must be escaped: backslash and the control characters other than tab, line feed, and carriage return (U+0000 to U+0008, U+000B, U+000C, U+000E to U+001F, U+007F).
 
-**Literal strings** are surrounded by three quotation marks. Like basic strings, they must appear on a single line:
+You can write a quotation mark, or two adjacent quotation marks, anywhere inside a multi-line basic string. They can also be written just inside the delimiters.
+
+```yaml
+str4: """Here are two quotation marks: "". Simple enough."""
+# str5: """Here are three quotation marks: """."""  # INVALID
+str5: """Here are three quotation marks: ""\"."""
+str6: """Here are fifteen quotation marks: ""\"""\"""\"""\"""\"."""
+
+# "This," she said, "is just a pointless statement."
+str7: """"This," she said, "is just a pointless statement.""""
+```
+
+If you're a frequent specifier of Windows paths or regular expressions, then having to escape backslashes quickly becomes tedious and error-prone. To help, TOML supports literal strings which do not allow escaping at all.
+
+**Literal strings** are surrounded by single quotes. Like basic strings, they must appear on a single line:
 
 ```yaml
 # What you see is what you get.
-winpath: """C:\Users\nodejs\templates"""
-winpath2: """\\ServerX\admin$\system32\"""
-quoted: """Tom "Dubs" Preston-Werner"""
-regex: """<\i\c*\s*>"""
+winpath: 'C:\Users\nodejs\templates'
+winpath2: '\\ServerX\admin$\system32\'
+quoted: 'Tom "Dubs" Preston-Werner'
+regex: '<\i\c*\s*>'
 ```
 
-Since there is no escaping, there is no way to write a single quote inside a literal string enclosed by single quotes. Luckily, Gura supports a multi-line version of literal strings that solves this problem.
+Since there is no escaping, there is no way to write a single quote inside a literal string enclosed by single quotes. Luckily, TOML supports a multi-line version of literal strings that solves this problem.
 
 **Multi-line literal strings** are surrounded by three single quotes on each side and allow newlines. Like literal strings, there is no escaping whatsoever. A newline immediately following the opening delimiter will be trimmed. All other content between the delimiters is interpreted as-is without modification.
 
 ```yaml
-regex2: """I [dw]on't need \d{2} apples"""
-lines: """
+regex2" '''I [dw]on't need \d{2} apples'''
+lines" '''
 The first newline is
 trimmed in raw strings.
    All other whitespace
    is preserved.
-"""
+'''
+```
+
+You can write 1 or 2 single quotes anywhere within a multi-line literal string, but sequences of three or more single quotes are not permitted.
+
+```yaml
+quot15: '''Here are fifteen quotation marks: """""""""""""""'''
+
+# apos15: '''Here are fifteen apostrophes: ''''''''''''''''''  # INVALID
+apos15: "Here are fifteen apostrophes: '''''''''''''''"
+
+# 'That,' she said, 'is still pointless.'
+str: ''''That,' she said, 'is still pointless.''''
 ```
 
 Control characters other than tab are not permitted in a literal string. Thus, for binary data, it is recommended that you use Base64 or another suitable ASCII or UTF-8 encoding. The handling of that encoding will be application-specific.
@@ -425,16 +452,18 @@ Variables can not be used as key.
 ```yaml
 $hostkey: "host"
 nginx:
-    $hostkey : 4 # INVALID
+  $hostkey : 4 # INVALID
 ```
 
 Variables must be specified before they are used, in source code order. Redefining variables must raise a parser error, even when defined in different files (see [imports](#imports)). 
 
-Variables can be used in basic strings:
+Variables can be used in *Basic strings* and *Multi-line basic strings*:
 
 ```yaml
 $name: "Gura"
 key: "$name is cool"
+key_2: """Config languages using variables:
+  - $name"""
 ```
 
 Environment variables can be accessed using `$` sign too.
