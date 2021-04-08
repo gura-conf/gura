@@ -531,7 +531,7 @@ $name: "Elisa"
 
 ```yaml
 import "two.ura"
-import "three.ura"
+import "/absolute/path/to/three.ura"  # You can use absolute path too
 
 # Life, $my_var and $name are available here
 my_name: $name
