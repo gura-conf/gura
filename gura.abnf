@@ -31,7 +31,7 @@ import-keyword = %x69 %x6d %x70 %x6f %x72 %x74 ; "import"
 import = import-keyword wschar basic-string
 
 ; Objects
-object = ws unquoted-key keyval-sep ws [comment]  newline object
+object = ws unquoted-key keyval-sep ws [comment] newline object
 object =/ keyval-with-spaces *( newline object )
 
 
