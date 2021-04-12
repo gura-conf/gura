@@ -156,7 +156,8 @@ For convenience, some popular characters have a compact escape sequence.
 
 Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms. The escape codes must be valid Unicode [scalar values](https://unicode.org/glossary/#unicode_scalar_value).
 
-All other escape sequences not listed above are reserved; if they are used, Gura should produce an error.
+<!-- All other escape sequences not listed above are reserved; if they are used, Gura should produce an error. -->
+All other escape sequences not listed above will be interpreted as literal.
 
 Sometimes you need to express passages of text (e.g. translation files) or would like to break up a very long string into multiple lines. Gura makes this easy.
 
@@ -207,9 +208,13 @@ str4: """Here are two quotation marks: "". Simple enough."""
 # str5: """Here are three quotation marks: """."""  # INVALID
 str5: """Here are three quotation marks: ""\"."""
 str6: """Here are fifteen quotation marks: ""\"""\"""\"""\"""\"."""
+```
 
+Unlike TOML, it is invalid to use three quotation marks inside a multi-line string:
+
+```yaml
 # "This," she said, "is just a pointless statement."
-str7: """"This," she said, "is just a pointless statement.""""
+str7: """"This," she said, "is just a pointless statement.""""  # INVALID
 ```
 
 If you're a frequent specifier of Windows paths or regular expressions, then having to escape backslashes quickly becomes tedious and error-prone. To help, Gura supports literal strings which do not allow escaping at all.
@@ -229,8 +234,8 @@ Since there is no escaping, there is no way to write a single quote inside a lit
 **Multi-line literal strings** are surrounded by three single quotes on each side and allow newlines. Like literal strings, there is no escaping whatsoever. A newline immediately following the opening delimiter will be trimmed. All other content between the delimiters is interpreted as-is without modification.
 
 ```yaml
-regex2" '''I [dw]on't need \d{2} apples'''
-lines" '''
+regex2: '''I [dw]on't need \d{2} apples'''
+lines: '''
 The first newline is
 trimmed in raw strings.
    All other whitespace
@@ -485,7 +490,6 @@ $PATH: "Another value"
 When a variable is used Gura looks for the definition in the current file and the imported ones. If it is not defined, checks for available environment variables, if it is not, it must raise an error.
 
 
-
 ### Imports
 
 You can import one or more Gura files using an `import` statement. The effect of importing a file is the same as replacing the import by the file's contents. Therefore, all the keys and variables defined on them will be available in the file which is importing.
@@ -544,9 +548,11 @@ my_name: $name
 
 Gura files should use the extension `.ura`.
 
+
 ### MIME Type
 
 When transferring Gura files over the internet, the appropriate MIME type is `application/gura`.
+
 
 ### ABNF Grammar
 
