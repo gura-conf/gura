@@ -156,7 +156,6 @@ For convenience, some popular characters have a compact escape sequence.
 
 Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms. The escape codes must be valid Unicode [scalar values](https://unicode.org/glossary/#unicode_scalar_value).
 
-<!-- All other escape sequences not listed above are reserved; if they are used, Gura should produce an error. -->
 All other escape sequences not listed above will be interpreted as literal.
 
 Sometimes you need to express passages of text (e.g. translation files) or would like to break up a very long string into multiple lines. Gura makes this easy.
