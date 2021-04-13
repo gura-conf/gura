@@ -543,6 +543,15 @@ my_name: $name
 # life: "some value" # This WILL NOT work as it is defined in one.ura which is included in two.ura
 ```
 
+You can use variables inside import sentences!
+
+```yaml
+$common_path: "/extremely/long/path/to/some/useful/directory"
+
+import "$common_path/one.ura"
+import "$common_path/two.ura"
+```
+
 
 ### Filename Extension
 
