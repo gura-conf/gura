@@ -494,7 +494,7 @@ When a variable is used Gura looks for the definition in the current file and th
 
 You can import one or more Gura files using an `import` statement. The effect of importing a file is the same as replacing the import by the file's contents. Therefore, all the keys and variables defined on them will be available in the file which is importing.
 
-Imports must occur at the beginning of the file and there must be no blanks in front of the `import` statement. Must be only one whitespace between the `import` and file name.
+Imports must occur at the beginning of the file and there must be no blanks in front of the `import` statement. Must be only one whitespace between the `import` and file name. The file name must be between single quotation marks (") and there won't be special character escaping.
 
 ```yaml
 import "another_file.ura" # Good
