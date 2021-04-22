@@ -380,13 +380,13 @@ Like YAML, objects have a header (key), a colon and underneath each of their att
 
 ```yaml
 services:
-	nginx:
-		host: "127.0.0.1"
-		port: 80
-	
-	apache:
-		virtual_host: "10.10.10.4"
-		port: 81
+  nginx:
+    host: "127.0.0.1"
+    port: 80
+  
+  apache:
+    virtual_host: "10.10.10.4"
+    port: 81
 ```
 
 The equivalent JSON would be:
@@ -442,14 +442,14 @@ nested_mixed_array: [ [ 1, 2 ], ["a", "b", "c"] ]
 # Mixed-type arrays are allowed
 numbers: [ 0.1, 0.2, 0.5, 1, 2, 5 ]
 tango_singers: [
-	user1:
-		name: "Carlos"
-		surname: "Gardel"
-		year_of_birth: 1890,
-	user2:
-		name: "Aníbal"
-		surname: "Troilo"
-		year_of_birth: 1914
+  user1:
+    name: "Carlos"
+    surname: "Gardel"
+    year_of_birth: 1890,
+  user2:
+    name: "Aníbal"
+    surname: "Troilo"
+    year_of_birth: 1914
 ]
 ```
 
