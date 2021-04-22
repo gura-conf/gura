@@ -1,13 +1,16 @@
 # Gura
 
-Gura configuration file
+Gura configuration file.
 
 By Jware solutions.
+
+<!-- TODO: change yaml markdown when Gura is accepted as a configuration language -->
 
 
 ## Table of contents
 
 - [Objectives](#objectives)
+- [Standard errors](#standard-errors)
 - [Spec](#spec)
   - [Comment](#comment)
   - [Key/Value Pair](#keyvalue-pair)
@@ -30,6 +33,13 @@ By Jware solutions.
 ## Objectives
 
 Gura aims to be a minimal configuration file format that's easy to read due to its similarity with YAML. The key of the language is that there is one and only one way to do things. That feature make it ease to learn, parse, implement and understand.
+
+
+## Standard errors
+
+The Gura specifications define the semantic errors that should be thrown in certain situations to define implementation-agnostic behavior so that you can receive the same type of error regardless of the programming language from which you are using Gura.
+
+Each type of error will be mentioned in the respective sections.
 
 
 ## Spec
@@ -110,7 +120,7 @@ A bare key must be non-empty.
 : "no key name"  # INVALID
 ```
 
-Defining a key multiple times is invalid.
+Defining a key multiple times is invalid and it must raise a `DuplicatedKeyError` error.
 
 ```yaml
 # DO NOT DO THIS
@@ -396,6 +406,28 @@ The equivalent JSON would be:
 }
 ```
 
+**Some considerations about the indentation**
+
+A whitespace (U+0020) or a tab (U+0009) can be used as indentation character. Whichever is selected, the same character must be respected throughout the whole Gura document (including imported files), in case both characters are found an `InvalidIndentationError` must be raised.
+
+Also, the indentation levels must be divisible by 2, otherwise an `InvalidIndentationError` error must be raised.
+
+Finally, unlike YAML, in Gura it is not possible to define empty pairs to indicate null values, so the following code segment is invalid:
+
+```yaml
+user1: # INVALID
+```
+
+Or this another one:
+
+```yaml
+user:
+    name: # INVALID
+    surname: "Troilo"
+```
+
+In both of the above cases, an `InvalidIndentationError` error must be raised.
+
 
 ### Array
 
@@ -459,7 +491,7 @@ nginx:
   $hostkey : 4 # INVALID
 ```
 
-Variables must be specified before they are used, in source code order. Redefining variables must raise a parser error, even when defined in different files (see [imports](#imports)). 
+Variables must be specified before they are used, in source code order. Redefining variables must raise a `DuplicatedVariableError` error, even when defined in different files (see [imports](#imports)). 
 
 Variables can be used in *Basic strings* and *Multi-line basic strings*:
 
@@ -486,14 +518,14 @@ $my_path: $PATH
 $PATH: "Another value"
 ```
 
-When a variable is used Gura looks for the definition in the current file and the imported ones. If it is not defined, checks for available environment variables, if it is not, it must raise an error.
+When a variable is used Gura looks for the definition in the current file and the imported ones. If it is not defined, checks for available environment variables, if it is not, it must raise a `VariableNotDefinedError` error.
 
 
 ### Imports
 
 You can import one or more Gura files using an `import` statement. The effect of importing a file is the same as replacing the import by the file's contents. Therefore, all the keys and variables defined on them will be available in the file which is importing.
 
-Imports must occur at the beginning of the file and there must be no blanks in front of the `import` statement. Must be only one whitespace between the `import` and file name. The file name must be between single quotation marks (") and there won't be special character escaping.
+Imports must occur at the beginning of the file and there must be no blanks in front of the `import` statement. Must be only one whitespace between the `import` and file name. The file name must be between single quotation marks (") and there won't be special character escaping. Importing a non-existing file must raise a `FileNotFoundError` error.
 
 ```yaml
 import "another_file.ura" # Good
@@ -507,7 +539,7 @@ import "another_file.ura" # INVALID: is not at the beginning of the file
 
 <!-- TODO: analyze require vs include https://www.w3schools.com/PHP/php_includes.asp -->
 
-A file can only be imported once. Re-importing a file must raise a parsing error.
+A file can only be imported once. Re-importing a file must raise a `DuplicatedImportError` error.
 
 
 **one.ura**:
