@@ -1,0 +1,1 @@
+Gura aims to be a minimal configuration file format that's easy to read due to its similarity with YAML. The key of the language is that there is one and only one way to do things. That feature make it ease to learn, parse, implement and understand.
