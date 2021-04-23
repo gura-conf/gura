@@ -78,16 +78,15 @@ All help is more than welcome. You can:
 
 ## Acknowledgements
 
-I want to give my sincere thanks to [Facundo Quiroga][quiroga] and [Ulises Cornejo Fandos][cornejo-fandos] for being there to solve some doubts, guide me in the implementation and give their valuable opinions during the development of this language.
+I want to give my sincere thanks to [Facundo Quiroga][quiroga] and [Ulises Jeremias Cornejo Fandos][cornejo-fandos] for being there to solve some doubts, guide me in the implementation and give their valuable opinions during the development of this language.
 
 
 ## Licence
 
 Gura is distributed under the terms of the MIT license.
 
-
 [blog]: https://noyaml.com/
-[specs]: ./gura.md
+[specs]: https://jware-solutions.github.io/gura
 [boolean-workaround]: https://stackoverflow.com/questions/53648244/specifying-the-string-value-yes-in-a-yaml-property
 [safe-yaml]: https://pyyaml.docsforge.com/master/api/yaml/safe_load/
 [yaml-specs]: https://yaml.org/spec/1.2/spec.html
