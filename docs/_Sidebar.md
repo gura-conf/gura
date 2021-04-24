@@ -1,3 +1,4 @@
+- [Gura](./GURA.md)
 - [Objectives](./OBJECTIVES.md)
 - [Standard errors](./STD_ERRORS.md)
 - [Spec](./SPECS.md)
