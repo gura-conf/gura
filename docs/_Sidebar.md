@@ -16,5 +16,5 @@
   - [Imports](#imports)
   - [Filename Extension](#filename-extension)
   - [MIME Type](#mime-type)
+  - [ABNF Grammar](#abnf-grammar)
 - [License](./LICENSE.md)
-<!-- - [ABNF Grammar](#abnf-grammar) -->

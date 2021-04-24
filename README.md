@@ -8,6 +8,7 @@ Gura is a file format for simple configuration files like TOML and readable like
 - [Motivation](#motivation)
 	- [Differences with YAML](#differences-with-yaml)
 	- [Differences with TOML](#differences-with-toml)
+	- [Differences with JSON](#differences-with-json)
 	- [Gura's own stuff](#guras-own-stuff)
 - [Implementations](#implementations)
 - [Contributing](#contributing)
@@ -15,9 +16,9 @@ Gura is a file format for simple configuration files like TOML and readable like
 - [Licence](#licence)
 
 
-## Motivation
+## Motivation and objectives
 
-Gura was born from the need to have a configuration language that is human readable without falling into the unnecessary complexity of the most popular formats such as YAML. You can access [the specifications][specs] directly or read on to understand the motivation for a new configuration language.
+Gura was born from the need to have a configuration language that is human readable without falling into the unnecessary complexity of the most popular formats such as YAML. You can access the specifications [document][specs] or [page][specs-site] directly, or read on to understand the motivation for a new configuration language.
 
 
 ### Differences with YAML
@@ -49,6 +50,11 @@ Even being a simple language, in some cases it falls into to the same complexity
 - Various ways to add separators to a number.
 
 
+### Differences with JSON
+
+JSON is and will be the fastest serialization language available. Gura does not have that approach, it simply aims to satisfy another kind of demand. When a fast processing and/or machine-to-machine communication format is required JSON is unbeatable, when a readable, simple and maintainable language is needed Gura becomes an excellent alternative.
+
+
 ### Gura's own stuff
 
 Gura not only combines the readability of YAML and a reduced version of its syntax with the (even more simplified) simplicity of TOML. But it also adds some extra functionality exclusive to this language:
@@ -56,6 +62,7 @@ Gura not only combines the readability of YAML and a reduced version of its synt
 - 📦 Variables: Gura allows you to define variables of any type, even using environment variables, both as a flat value and as values inside a string. So you can compact and reuse the values you require.
 - 📑 Import: Gura defines a way to import different Gura files within the same file in order to modularize the configuration.
 - 🚫 Standard errors: Gura defines the *semantic* errors that should be thrown in certain situations. This way you get an implementation-agnostic definition and the developer can get the same type of error regardless of the programming language he/she is using.
+- 🌟 It is simple: thanks to the simplicity of Gura, developing a parser and processing Gura format is a quick and easy task.
 
 The idea of Gura **will always be focused on simplicity**. That's why we are reluctant to support more complex structures that should not be part of a configuration language. If you are looking for a way to execute code like loops, conditions, functions and so on we recommend [Dhall][dhall], **Gura does not and will never seek to replace the behavior that any programming language already offers in a robust way**. That's why we only focus on explicit static definitions that make it easier to understand not only the language, but more importantly, your own configuration file itself.
 
@@ -86,7 +93,8 @@ I want to give my sincere thanks to [Facundo Quiroga][quiroga] and [Ulises Jerem
 Gura is distributed under the terms of the MIT license.
 
 [blog]: https://noyaml.com/
-[specs]: https://jware-solutions.github.io/gura
+[specs]: ./gura.md
+[specs-site]: https://jware-solutions.github.io/gura
 [boolean-workaround]: https://stackoverflow.com/questions/53648244/specifying-the-string-value-yes-in-a-yaml-property
 [safe-yaml]: https://pyyaml.docsforge.com/master/api/yaml/safe_load/
 [yaml-specs]: https://yaml.org/spec/1.2/spec.html
