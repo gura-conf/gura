@@ -1,6 +1,6 @@
 - [Objectives](./OBJECTIVES.md)
 - [Standard errors](./STD_ERRORS.md)
-- [Spec](#spec)
+- [Spec](./SPECS.md)
   - [Comment](#comment)
   - [Key/Value Pair](#keyvalue-pair)
   - [Keys](#keys)
