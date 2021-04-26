@@ -278,8 +278,7 @@ int3: 0
 int4: -17
 ```
 
-For large numbers, you may use underscores between digits to enhance
-readability. Each underscore must be surrounded by at least three digit on right side.
+For large numbers, you may use underscores between digits to enhance readability. Each underscore must be surrounded by at least one digit on each side.
 
 ```yaml
 int5: 1_000
