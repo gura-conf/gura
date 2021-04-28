@@ -92,7 +92,7 @@ Furthermore, even TOML falls in some cases into the same complexity as YAML, wit
 
 ### Differences with JSON
 
-JSON is and will be the fastest serialization language available. Gura is not meant for fast processing and/or machine-to-machine communication. is required JSON is unbeatable, when a readable, simple and maintainable language is needed Gura becomes an excellent alternative.
+JSON is and will be the fastest serialization language available. Gura is not meant for fast processing and/or machine-to-machine communication. When a readable, simple and maintainable language is needed Gura becomes an excellent alternative.
 
 
 ### Gura
