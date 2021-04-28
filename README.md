@@ -88,7 +88,6 @@ Furthermore, even TOML falls in some cases into the same complexity as YAML, wit
 - Multiple ways to specify keys
 - Empty keys
 - Special data types
-- Various ways to add separators to a number.
 
 
 ### Differences with JSON
