@@ -46,3 +46,11 @@ Gura does not seek to replace the behavior that any programming language already
 
 Gura **will always be focused on simplicity**. Therefore, we are reluctant to support more complex structures. If you are looking for a way to execute code like loops, conditions, functions and so on in a config file, we recommend [Dhall][dhall].
 
+
+[blog]: https://noyaml.com/
+[reddit-post]: https://www.reddit.com/r/programming/comments/iqwbek/stop_adding_support_for_yaml_in_your_products/
+[boolean-workaround]: https://stackoverflow.com/questions/53648244/specifying-the-string-value-yes-in-a-yaml-property
+[safe-yaml]: https://pyyaml.docsforge.com/master/api/yaml/safe_load/
+[yaml-specs]: https://yaml.org/spec/1.2/spec.html
+[dotted-keys]: https://toml.io/en/v1.0.0#table
+[dhall]: https://dhall-lang.org/#

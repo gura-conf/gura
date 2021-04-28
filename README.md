@@ -111,16 +111,9 @@ I want to give my sincere thanks to [Facundo Quiroga][quiroga] and [Ulises Jerem
 
 Gura is distributed under the terms of the MIT license.
 
-[blog]: https://noyaml.com/
 [specs]: ./gura.md
 [specs-site]: https://jware-solutions.github.io/gura
 [rationale-section]: https://jware-solutions.github.io/gura/#RATIONALE
-[boolean-workaround]: https://stackoverflow.com/questions/53648244/specifying-the-string-value-yes-in-a-yaml-property
-[safe-yaml]: https://pyyaml.docsforge.com/master/api/yaml/safe_load/
-[yaml-specs]: https://yaml.org/spec/1.2/spec.html
-[reddit-post]: https://www.reddit.com/r/programming/comments/iqwbek/stop_adding_support_for_yaml_in_your_products/
-[dotted-keys]: https://toml.io/en/v1.0.0#table
-[dhall]: https://dhall-lang.org/#
 [gura-python-parser]: https://github.com/jware-solutions/gura-python-parser
 [discussions]: https://github.com/jware-solutions/gura/discussions/categories/ideas-rfc
 [quiroga]: https://github.com/facundoq
