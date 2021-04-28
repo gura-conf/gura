@@ -9,7 +9,7 @@ title: "Gura Example"
 
 # Define an object with fields `username` and `age`
 # with string and integer values, respectively
-# indentation is used to indicate nesting
+# Indentation is used to indicate nesting
 person:
     username: "Stephen"
     age: 20
@@ -26,7 +26,7 @@ $foreground: "#FFAH84"
 color-scheme:
     editor: $foreground
     ui:     $foreground
-# 
+
 ````
 
 ## Index
