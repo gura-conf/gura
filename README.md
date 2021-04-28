@@ -28,6 +28,11 @@ color-scheme:
     ui:     $foreground
 
 ````
+The file extension for Gura is `ura`. We recommend the filename `config.ura` for main configuration files.
+
+To learn more about Gura, you can read the [Official Gura Documentation][specs].
+
+Currently, Gura only has a [Python implementation](https://github.com/jware-solutions/gura-python-parser) you can install with `pip install gura` and start using today. Rust and C++ implementations are being currently developed and will be available shortly.
 
 ## Index
 
@@ -57,9 +62,11 @@ All help is more than welcome. You can:
 - Contribute to some of the implementations, or write your own in the programming language of your choice! In the latter case don't forget to make an issue letting us know that your implementation is available so we can add it to the [Implementations](#implementations) list.
 <!-- - Contribute to the official website project -->
 
+
+
 ## Rationale
 
-Gura was born from the need to have a configuration language that is human readable without falling into the unnecessary complexity of the most popular formats such as YAML. You can access the specifications [document][specs] or [page][specs-site] directly, or read on to understand the motivation for a new configuration language.
+Gura was born from the need to have a configuration language that is human readable without falling into the unnecessary complexity of popular formats such as YAML. The following is an overview of the issues with such formats, which motivated the creation of this new configuration language.
 
 ### Differences with YAML
 
