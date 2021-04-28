@@ -32,7 +32,7 @@ The file extension for Gura is `ura`. We recommend the filename `config.ura` for
 
 To learn more about Gura, you can read the [Official Gura Documentation][specs].
 
-Currently, Gura only has a [Python implementation](https://github.com/jware-solutions/gura-python-parser) you can install with `pip install gura` and start using today. Rust and C++ implementations are being currently developed and will be available shortly.
+Currently, Gura has a [Python implementation](https://github.com/jware-solutions/gura-python-parser) you can install with `pip install gura` and start using today. Rust and C++ implementations are being currently developed and will be available shortly.
 
 ## Index
 
