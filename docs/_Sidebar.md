@@ -1,5 +1,6 @@
 - [Gura](./GURA.md)
 - [Objectives](./OBJECTIVES.md)
+- [Rationale](./RATIONALE.md)
 - [Standard errors](./STD_ERRORS.md)
 - [Spec](./SPECS.md)
   - [Comment](#comment)
