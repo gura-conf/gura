@@ -1,25 +1,65 @@
 # Gura
 
-Gura is a file format for simple configuration files like TOML and readable like YAML.
+Gura is a file format for *configuration files*. Gura is as **flexible as YAML** and **simple and readable like TOML**. Its syntax is clear and powerful, yet familiar for YAML/TOML users:
 
+````yaml
+# This is a comment in a Gura configuration file.
+# Define a variable named `title` with string value "Gura Example"
+title: "Gura Example"
+
+# Define an object with fields `username` and `age`
+# with string and integer values, respectively
+# indentation is used to indicate nesting
+person:
+    username: "Stephen"
+    age: 20
+
+# Define a list of values
+# Line breaks are OK when inside arrays
+hosts: [
+    "alpha",
+    "omega"
+]
+
+# Variables can be defined and referenced to avoid repetition
+$foreground: "#FFAH84"
+color-scheme:
+    editor: $foreground
+    ui:     $foreground
+# 
+````
 
 ## Index
 
-- [Motivation](#motivation)
+- [Implementations](#implementations)
+- [Contributing](#contributing)
+- [Acknowledgements](#acknowledgements)
+- [Rationale](#rationale)
 	- [Differences with YAML](#differences-with-yaml)
 	- [Differences with TOML](#differences-with-toml)
 	- [Differences with JSON](#differences-with-json)
 	- [Gura's own stuff](#guras-own-stuff)
-- [Implementations](#implementations)
-- [Contributing](#contributing)
-- [Acknowledgements](#acknowledgements)
 - [Licence](#licence)
 
 
-## Motivation and objectives
+## Library Implementations
+
+Below is the list of implementations available for Gura. If you have an implementation of your own that you want to make known simply create a new issue and it will be added here.
+
+- Python: [gura-python-parser (official)][gura-python-parser]
+
+
+## Contributing
+
+All help is more than welcome. You can:
+
+- Write an RFC via our [GitHub Discussions][discussions] if you feel there is a bug in Gura or a missing feature.
+- Contribute to some of the implementations, or write your own in the programming language of your choice! In the latter case don't forget to make an issue letting us know that your implementation is available so we can add it to the [Implementations](#implementations) list.
+<!-- - Contribute to the official website project -->
+
+## Rationale
 
 Gura was born from the need to have a configuration language that is human readable without falling into the unnecessary complexity of the most popular formats such as YAML. You can access the specifications [document][specs] or [page][specs-site] directly, or read on to understand the motivation for a new configuration language.
-
 
 ### Differences with YAML
 
@@ -65,22 +105,6 @@ Gura not only combines the readability of YAML and a reduced version of its synt
 - 🌟 It is simple: thanks to the simplicity of Gura, developing a parser and processing Gura format is a quick and easy task.
 
 The idea of Gura **will always be focused on simplicity**. That's why we are reluctant to support more complex structures that should not be part of a configuration language. If you are looking for a way to execute code like loops, conditions, functions and so on we recommend [Dhall][dhall], **Gura does not and will never seek to replace the behavior that any programming language already offers in a robust way**. That's why we only focus on explicit static definitions that make it easier to understand not only the language, but more importantly, your own configuration file itself.
-
-
-## Implementations
-
-Below is the list of implementations available for Gura. If you have an implementation of your own that you want to make known simply create a new issue and it will be added here.
-
-- Python: [gura-python-parser][gura-python-parser]
-
-
-## Contributing
-
-All help is more than welcome. You can:
-
-- Write an RFC via our [GitHub Discussions][discussions] if you feel there is a bug in Gura or a missing feature.
-- Contribute to some of the implementations, or write your own in the programming language of your choice! In the latter case don't forget to make an issue letting us know that your implementation is available so we can add it to the [Implementations](#implementations) list.
-<!-- - Contribute to the official website project -->
 
 
 ## Acknowledgements
