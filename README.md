@@ -75,7 +75,7 @@ Javascript/Typescript, Rust and C++ implementations are being currently develope
 
 ## Index
 
-- [Implementations](#implementations)
+- [Implementations](#library-implementations)
 - [Contributing](#contributing)
 - [Acknowledgements](#acknowledgements)
 - [Rationale](#rationale)
