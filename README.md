@@ -5,7 +5,7 @@
 Gura is a file format for *configuration files*. Gura is as **flexible as YAML** and **simple and readable like TOML**. Its syntax is clear and powerful, yet familiar for YAML/TOML users:
 
 > This repository contains the in-development version of the Gura specification.
-> You can find the released versions at https://gura.netlify.app/.
+> You can find the released versions at https://jware-solutions.github.io/gura/.
 
 ````yaml
 # This is a comment in a Gura configuration file.
