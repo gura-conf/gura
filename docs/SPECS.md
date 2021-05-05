@@ -4,7 +4,7 @@
 * Newline means LF (0x0A) or CRLF (0x0D 0x0A).
 
 
-### Comment
+## Comment
 
 A hash symbol marks the rest of the line as a comment, except when inside a
 string.
@@ -18,7 +18,7 @@ another: "# This is not a comment"
 Control characters other than tab (U+0000 to U+0008, U+000A to U+001F, U+007F) are not permitted in comments.
 
 
-### Key/Value Pair
+## Key/Value Pair
 
 The primary building block of a Gura document is the key/value pair.
 
@@ -45,15 +45,14 @@ Unspecified values are invalid.
 key: # INVALID
 ```
 
-There must be a newline (or EOF) after a key/value pair. (See [Inline
-Table](#inline-table) for exceptions.)
+There must be a newline (or EOF) after a key/value pair.
 
 ```
-first = "Tom" last = "Preston-Werner" # INVALID
+first: "Carlitos" last: "Gardel" # INVALID
 ```
 
 
-### Keys
+## Keys
 
 A key may be either bare, quoted, or dotted.
 
@@ -78,12 +77,12 @@ Defining a key multiple times is invalid and it must raise a `DuplicatedKeyError
 
 ```yaml
 # DO NOT DO THIS
-name: "Tom"
-name: "Pradyun"
+name: "Carlos"
+name: "Anibal"
 ```
 
 
-### Null
+## Null
 
 The absence of value can be represented by the `null` value:
 
@@ -92,7 +91,7 @@ none_value: null
 ```
 
 
-### String
+## String
 
 There are four ways to express strings: basic, multi-line basic, literal, and multi-line literal. All strings must contain only valid UTF-8 characters.
 
@@ -107,15 +106,16 @@ str: "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
 For convenience, some popular characters have a compact escape sequence.
 
 ```
-\b         - backspace       (U+0008)
-\t         - tab             (U+0009)
-\n         - linefeed        (U+000A)
-\f         - form feed       (U+000C)
-\r         - carriage return (U+000D)
-\"         - quote           (U+0022)
-\\         - backslash       (U+005C)
-\uXXXX     - unicode         (U+XXXX)
-\UXXXXXXXX - unicode         (U+XXXXXXXX)
+\b         - backspace                  (U+0008)
+\t         - tab                        (U+0009)
+\n         - linefeed                   (U+000A)
+\f         - form feed                  (U+000C)
+\r         - carriage return            (U+000D)
+\"         - quote                      (U+0022)
+\\         - backslash                  (U+005C)
+\$         - dollar sign (variables)    (U+0024)
+\uXXXX     - unicode                    (U+XXXX)
+\UXXXXXXXX - unicode                    (U+XXXXXXXX)
 ```
 
 Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms. The escape codes must be valid Unicode [scalar values](https://unicode.org/glossary/#unicode_scalar_value).
@@ -188,7 +188,7 @@ If you're a frequent specifier of Windows paths or regular expressions, then hav
 # What you see is what you get.
 winpath: 'C:\Users\nodejs\templates'
 winpath2: '\\ServerX\admin$\system32\'
-quoted: 'Tom "Dubs" Preston-Werner'
+quoted: 'John "Dog lover" Wick'
 regex: '<\i\c*\s*>'
 ```
 
@@ -221,7 +221,7 @@ str: ''''That,' she said, 'is still pointless.''''
 Control characters other than tab are not permitted in a literal string. Thus, for binary data, it is recommended that you use Base64 or another suitable ASCII or UTF-8 encoding. The handling of that encoding will be application-specific.
 
 
-### Integer
+## Integer
 
 Integers are whole numbers. Positive numbers may be prefixed with a plus sign. Negative numbers are prefixed with a minus sign.
 
@@ -259,7 +259,7 @@ bin1: 0b11010110
 Arbitrary 64-bit signed integers (from −2^63 to 2^63−1) should be accepted and handled losslessly. If an integer cannot be represented losslessly, an error must be thrown.
 
 
-### Float
+## Float
 
 Floats should be implemented as IEEE 754 binary64 values.
 
@@ -316,7 +316,7 @@ sf6: -nan # Valid, actual encoding is implementation-specific
 ```
 
 
-### Boolean
+## Boolean
 
 Booleans are just the tokens you're used to. Always lowercase.
 
@@ -326,7 +326,7 @@ bool2: false
 ```
 
 
-### Object
+## Object
 
 Like YAML, objects have a header (key), a colon and underneath each of their attributes, which must begin in an indented block. This indentation must be respected throughout the entire Gura file.
 
@@ -382,7 +382,7 @@ user:
 In both of the above cases, an `InvalidIndentationError` error must be raised.
 
 
-### Array
+## Array
 
 Arrays are square brackets with values inside. Whitespace is ignored. Elements are separated by commas. Arrays can contain values of the same data types as allowed in key/value pairs. Values of different types may be mixed.
 
@@ -420,7 +420,7 @@ integers3: [
 ```
 
 
-### Variables
+## Variables
 
 You can define variables. They start with a `$` sign, a name and a colon. A variable name has to respect the same regex as keys.
 
@@ -473,8 +473,18 @@ $PATH: "Another value"
 
 When a variable is used Gura looks for the definition in the current file and the imported ones. If it is not defined, checks for available environment variables, if it is not, it must raise a `VariableNotDefinedError` error.
 
+To use `$` in string just use literal or escape them:
 
-### Imports
+
+```yaml
+basic: "I won \$500 dollars!"
+basic_multiline: """I won \$500 dollars!"""
+literal: 'I won $500 dollars!'
+literal_multiline: '''I won $500 dollars!'''
+```
+
+
+## Imports
 
 You can import one or more Gura files using an `import` statement. The effect of importing a file is the same as replacing the import by the file's contents. Therefore, all the keys and variables defined on them will be available in the file which is importing.
 
@@ -537,18 +547,23 @@ import "$common_path/two.ura"
 ```
 
 
-### Filename Extension
+## Filename Extension
 
 Gura files should use the extension `.ura`.
 
 
-### MIME Type
+## MIME Type
 
 When transferring Gura files over the internet, the appropriate MIME type is `application/gura`.
 
 
-### ABNF Grammar
+## ABNF Grammar
 
 A formal description of Gura's syntax is available, as a separate [ABNF file][abnf].
 
-[abnf]: https://github.com/jware-solutions/gura/blob/master/gura.abnf
+[abnf]: ./gura.abnf
+
+
+## License
+
+Gura is distributed under the terms of the MIT license.
