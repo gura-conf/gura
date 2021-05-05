@@ -129,15 +129,16 @@ str: "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
 For convenience, some popular characters have a compact escape sequence.
 
 ```
-\b         - backspace       (U+0008)
-\t         - tab             (U+0009)
-\n         - linefeed        (U+000A)
-\f         - form feed       (U+000C)
-\r         - carriage return (U+000D)
-\"         - quote           (U+0022)
-\\         - backslash       (U+005C)
-\uXXXX     - unicode         (U+XXXX)
-\UXXXXXXXX - unicode         (U+XXXXXXXX)
+\b         - backspace                  (U+0008)
+\t         - tab                        (U+0009)
+\n         - linefeed                   (U+000A)
+\f         - form feed                  (U+000C)
+\r         - carriage return            (U+000D)
+\"         - quote                      (U+0022)
+\\         - backslash                  (U+005C)
+\$         - dollar sign (variables)    (U+0024)
+\uXXXX     - unicode                    (U+XXXX)
+\UXXXXXXXX - unicode                    (U+XXXXXXXX)
 ```
 
 Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms. The escape codes must be valid Unicode [scalar values](https://unicode.org/glossary/#unicode_scalar_value).
@@ -494,6 +495,16 @@ $PATH: "Another value"
 ```
 
 When a variable is used Gura looks for the definition in the current file and the imported ones. If it is not defined, checks for available environment variables, if it is not, it must raise a `VariableNotDefinedError` error.
+
+To use `$` in string just use literal or escape them:
+
+
+```yaml
+basic: "I won \$500 dollars!"
+basic_multiline: """I won \$500 dollars!"""
+literal: 'I won $500 dollars!'
+literal_multiline: '''I won $500 dollars!'''
+```
 
 
 ## Imports
