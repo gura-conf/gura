@@ -35,7 +35,6 @@ Values must have one of the following types.
 - [Integer](#integer)
 - [Float](#float)
 - [Boolean](#boolean)
-- [Offset Date-Time](#offset-date-time)
 - [Object](#object)
 - [Array](#array)
 
