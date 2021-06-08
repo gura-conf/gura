@@ -5,7 +5,7 @@
 Gura is a file format for *configuration files*. Gura is as **flexible as YAML** and **simple and readable like TOML**. Its syntax is clear and powerful, yet familiar for YAML/TOML users:
 
 > This repository contains the in-development version of the Gura specification.
-> You can find the released versions at https://jware-solutions.github.io/gura/.
+> You can find the released versions at https://gura.netlify.app/.
 
 ````yaml
 # This is a comment in a Gura configuration file.
@@ -37,7 +37,7 @@ The file extension for Gura is `ura`. We recommend the filename `config.ura` for
 
 To learn more about Gura, you can read the [Official Gura Documentation][specs].
 
-Currently, Gura has a [Python implementation](https://github.com/jware-solutions/gura-python-parser) you can install with `pip install gura` and start using today.
+Currently, Gura has a [Python implementation][gura-python-parser] you can install with `pip install gura` and start using today.
 
 ```python
 import gura
@@ -70,7 +70,7 @@ for host in parsed_gura['hosts']:
     print(f'Host -> {host}')
 ```
 
-Javascript/Typescript, Rust and C++ implementations are being currently developed and will be available shortly.
+[Javascript/Typescript][gura-js-parser] parser is also available. Rust and C++ implementations are being currently developed and will be available shortly.
 
 
 ## Index
@@ -86,6 +86,7 @@ Javascript/Typescript, Rust and C++ implementations are being currently develope
 
 Below is the list of implementations available for Gura. If you have an implementation of your own that you want to make known simply create a new issue and it will be added here.
 
+- Javascript/Typescript: [gura-js-parser (official)][gura-js-parser]
 - Python: [gura-python-parser (official)][gura-python-parser]
 
 
@@ -161,15 +162,16 @@ Gura is distributed under the terms of the MIT license.
 
 [blog]: https://noyaml.com/
 [specs]: ./gura.md
-[specs-site]: https://jware-solutions.github.io/gura
+[specs-site]: https://gura.netlify.app/
 [boolean-workaround]: https://stackoverflow.com/questions/53648244/specifying-the-string-value-yes-in-a-yaml-property
 [safe-yaml]: https://pyyaml.docsforge.com/master/api/yaml/safe_load/
 [yaml-specs]: https://yaml.org/spec/1.2/spec.html
 [reddit-post]: https://www.reddit.com/r/programming/comments/iqwbek/stop_adding_support_for_yaml_in_your_products/
 [dotted-keys]: https://toml.io/en/v1.0.0#table
 [dhall]: https://dhall-lang.org/#
-[gura-python-parser]: https://github.com/jware-solutions/gura-python-parser
-[discussions]: https://github.com/jware-solutions/gura/discussions/categories/ideas-rfc
+[gura-python-parser]: https://github.com/gura-conf/gura-python-parser
+[gura-js-parser]: https://github.com/gura-conf/gura-js-parser
+[discussions]: https://github.com/gura-conf/gura/discussions/categories/ideas-rfc
 [quiroga]: https://github.com/facundoq
 [cornejo-fandos]: https://github.com/ulises-jeremias
 
