@@ -85,7 +85,7 @@ ASCII digits, e.g. `1234`, but are always interpreted as strings.
 ```yaml
 key: "value"
 bare_key: "value"
-bare-key: "value"
+bare-key: "value"  # INVALID
 1234: "value"
 ```
 
@@ -315,7 +315,7 @@ invalid_float_2: 7.
 invalid_float_3: 3.e+20
 ```
 
-Similar to integers, you may use underscores to enhance readability. <!-- Each underscore must be surrounded by at least one digit. -->
+Similar to integers, you may use underscores to enhance readability.
 
 ```yaml
 flt8: 224_617.445_991_228
