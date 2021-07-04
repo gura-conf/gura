@@ -86,6 +86,7 @@ for host in parsed_gura['hosts']:
 
 Below is the list of implementations available for Gura. If you have an implementation of your own that you want to make known simply create a new issue and it will be added here.
 
+- Dart: [gura-dart-parser][gura-dart-parser]
 - Javascript/Typescript: [gura-js-parser (official)][gura-js-parser]
 - Python: [gura-python-parser (official)][gura-python-parser]
 
@@ -169,8 +170,9 @@ Gura is distributed under the terms of the MIT license.
 [reddit-post]: https://www.reddit.com/r/programming/comments/iqwbek/stop_adding_support_for_yaml_in_your_products/
 [dotted-keys]: https://toml.io/en/v1.0.0#table
 [dhall]: https://dhall-lang.org/#
-[gura-python-parser]: https://github.com/gura-conf/gura-python-parser
+[gura-dart-parser]: https://github.com/zajrik/gura-dart-parser
 [gura-js-parser]: https://github.com/gura-conf/gura-js-parser
+[gura-python-parser]: https://github.com/gura-conf/gura-python-parser
 [discussions]: https://github.com/gura-conf/gura/discussions/categories/ideas-rfc
 [quiroga]: https://github.com/facundoq
 [cornejo-fandos]: https://github.com/ulises-jeremias
