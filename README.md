@@ -177,4 +177,4 @@ Gura is distributed under the terms of the MIT license.
 [discussions]: https://github.com/gura-conf/gura/discussions/categories/ideas-rfc
 [quiroga]: https://github.com/facundoq
 [cornejo-fandos]: https://github.com/ulises-jeremias
-[discord-server]: https://discord.gg/UkrhVRv7
+[discord-server]: https://discord.gg/Qs5AXPQpKd
