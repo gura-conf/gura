@@ -95,6 +95,7 @@ Below is the list of implementations available for Gura. If you have an implemen
 
 All help is more than welcome. You can:
 
+- You can join to our [community in Discord][discord-server]!
 - Write an RFC via our [GitHub Discussions][discussions] if you feel there is a bug in Gura or a missing feature.
 - Contribute to some of the implementations, or write your own in the programming language of your choice! In the latter case don't forget to make an issue letting us know that your implementation is available so we can add it to the [Implementations](#implementations) list.
 
@@ -176,4 +177,4 @@ Gura is distributed under the terms of the MIT license.
 [discussions]: https://github.com/gura-conf/gura/discussions/categories/ideas-rfc
 [quiroga]: https://github.com/facundoq
 [cornejo-fandos]: https://github.com/ulises-jeremias
-
+[discord-server]: https://discord.gg/UkrhVRv7
