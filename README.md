@@ -83,7 +83,7 @@ for host in parsed_gura['hosts']:
 - [Licence](#licence)
 
 
-## Implementations
+## Library implementations
 
 Below is the list of implementations available for Gura. If you have an implementation of your own that you want to make known simply create a new issue and it will be added here.
 
