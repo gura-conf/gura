@@ -76,19 +76,27 @@ for host in parsed_gura['hosts']:
 ## Index
 
 - [Implementations](#library-implementations)
+- [IDE support](#ide-support)
 - [Contributing](#contributing)
 - [Acknowledgements](#acknowledgements)
 - [Rationale](#rationale)
 - [Licence](#licence)
 
 
-## Library Implementations
+## Implementations
 
 Below is the list of implementations available for Gura. If you have an implementation of your own that you want to make known simply create a new issue and it will be added here.
 
 - Dart: [gura-dart-parser][gura-dart-parser]
 - Javascript/Typescript: [gura-js-parser (official)][gura-js-parser]
 - Python: [gura-python-parser (official)][gura-python-parser]
+
+
+## IDE support
+
+Below is the list of IDEs plugins available for Gura. If you have developed a plugin or IDE integration that you want to make known simply create a new issue and it will be added here.
+
+- VS Code: [Gura Syntax Highlighting][vs-code-plugin]
 
 
 ## Contributing
@@ -178,3 +186,4 @@ Gura is distributed under the terms of the MIT license.
 [quiroga]: https://github.com/facundoq
 [cornejo-fandos]: https://github.com/ulises-jeremias
 [discord-server]: https://discord.gg/Qs5AXPQpKd
+[vs-code-plugin]: https://marketplace.visualstudio.com/items?itemName=zajrik.gura-syntax-highlight
