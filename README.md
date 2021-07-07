@@ -28,7 +28,7 @@ hosts: [
 
 # Variables can be defined and referenced to avoid repetition
 $foreground: "#FFAH84"
-color-scheme:
+color_scheme:
     editor: $foreground
     ui:     $foreground
 
