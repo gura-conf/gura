@@ -37,7 +37,7 @@ The file extension for Gura is `ura`. We recommend the filename `config.ura` for
 
 To learn more about Gura, you can read the [Official Gura Documentation][specs].
 
-Currently, Gura has a [Python implementation][gura-python-parser] you can install with `pip install gura` and start using today.
+Currently, Gura has, among others, a [Python implementation][gura-python-parser] you can install with `pip install gura` and start using today.
 
 ```python
 import gura
@@ -70,7 +70,7 @@ for host in parsed_gura['hosts']:
     print(f'Host -> {host}')
 ```
 
-[Javascript/Typescript][gura-js-parser] parser is also available. Rust and C++ implementations are being currently developed and will be available shortly.
+[Javascript/Typescript][gura-js-parser] parser is also available! Check the [complete implementation list](#library-implementations) to see available libraries. Other programming languages implementations are being currently developed and will be available shortly.
 
 
 ## Index
@@ -90,6 +90,7 @@ Below is the list of implementations available for Gura. If you have an implemen
 - Dart: [gura-dart-parser][gura-dart-parser]
 - Javascript/Typescript: [gura-js-parser (official)][gura-js-parser]
 - Python: [gura-python-parser (official)][gura-python-parser]
+- Rust: [gura-rs-parser (official)][gura-rs-parser]
 
 
 ## IDE support
@@ -182,6 +183,7 @@ Gura is distributed under the terms of the MIT license.
 [gura-dart-parser]: https://github.com/zajrik/gura-dart-parser
 [gura-js-parser]: https://github.com/gura-conf/gura-js-parser
 [gura-python-parser]: https://github.com/gura-conf/gura-python-parser
+[gura-rs-parser]: https://github.com/gura-conf/gura-rs-parser
 [discussions]: https://github.com/gura-conf/gura/discussions/categories/ideas-rfc
 [quiroga]: https://github.com/facundoq
 [cornejo-fandos]: https://github.com/ulises-jeremias
