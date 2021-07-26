@@ -91,6 +91,7 @@ Below is the list of implementations available for Gura. If you have an implemen
 - Javascript/Typescript: [gura-js-parser (official)][gura-js-parser]
 - Python: [gura-python-parser (official)][gura-python-parser]
 - Rust: [gura-rs-parser (official)][gura-rs-parser]
+- V: [vgura (official)][vgura]
 
 
 ## IDE support
@@ -184,6 +185,7 @@ Gura is distributed under the terms of the MIT license.
 [gura-js-parser]: https://github.com/gura-conf/gura-js-parser
 [gura-python-parser]: https://github.com/gura-conf/gura-python-parser
 [gura-rs-parser]: https://github.com/gura-conf/gura-rs-parser
+[vgura]: https://github.com/gura-conf/vgura
 [discussions]: https://github.com/gura-conf/gura/discussions/categories/ideas-rfc
 [quiroga]: https://github.com/facundoq
 [cornejo-fandos]: https://github.com/ulises-jeremias
