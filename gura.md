@@ -76,20 +76,16 @@ first: "Carlitos" last: "Gardel" # INVALID
 
 ## Keys
 
-A key may be either bare, quoted, or dotted.
-
-**Bare keys** may only contain ASCII letters, ASCII digits, underscores, and
-dashes (`A-Za-z0-9_-`). Note that bare keys are allowed to be composed of only
-ASCII digits, e.g. `1234`, but are always interpreted as strings.
+In Gura there is only one way to define keys. A key may only contain ASCII letters and underscores (`A-Za-z0-9_`). Dashes are not allowed to keep a simple and consistent key naming convention. Note that keys are allowed to be composed of only ASCII digits, e.g. `1234`, but are always interpreted as strings.
 
 ```yaml
 key: "value"
-bare_key: "value"
-bare-key: "value"  # INVALID
+some_key: "value"
+some-key: "value"  # INVALID
 1234: "value"
 ```
 
-A bare key must be non-empty.
+A key must be non-empty.
 
 ```yaml
 : "no key name"  # INVALID
