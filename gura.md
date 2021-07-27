@@ -19,12 +19,12 @@ The Gura specifications define the semantic errors that should be thrown in cert
 Each type of error will be mentioned in the respective sections.
 
 
-## Spec
+# Specs
 
 * Gura is case-sensitive.
 * A Gura file must be a valid UTF-8 encoded Unicode document.
-* Whitespace means tab (0x09) or space (0x20).
-* Newline means LF (0x0A) or CRLF (0x0D 0x0A).
+* Whitespace means tab (U+0009) or space (U+0020).
+* Newline means LF (U+000A) or CRLF (U+000D U+000A).
 
 
 ## Comment
@@ -346,18 +346,18 @@ bool2: false
 
 ## Object
 
-Like YAML, objects have a header (key), a colon and underneath each of their attributes, which must begin in an indented block. This indentation must be respected throughout the entire Gura file.
+Like YAML, objects have a header (key), a colon and underneath each of their attributes, which must begin in an indented block. This indentation must be respected throughout the entire Gura file and each indentation level must be represented by 4 (four) spaces (U+0020). Unlike YAML, tabs (U+0009) are not allowed to define indentation blocks in order to standardize language formatting and provide users with a convenient way to maintain documents.
 
 
 ```yaml
 services:
-  nginx:
-    host: "127.0.0.1"
-    port: 80
+    nginx:
+        host: "127.0.0.1"
+        port: 80
   
-  apache:
-    virtual_host: "10.10.10.4"
-    port: 81
+    apache:
+        virtual_host: "10.10.10.4"
+        port: 81
 ```
 
 The equivalent JSON would be:
@@ -379,17 +379,23 @@ The equivalent JSON would be:
 
 **Some considerations about the indentation**
 
-A whitespace (U+0020) or a tab (U+0009) can be used as indentation character. Whichever is selected, the same character must be respected throughout the whole Gura document (including imported files), in case both characters are found an `InvalidIndentationError` must be raised.
+A space (U+0020) or a tab (U+0009) can be used on useless lines like comments o empty lines (lines composed of whitespaces and new lines) but only. In case a tab is found as an indentation character, an `InvalidIndentationError` must be raised.
 
-Also, the indentation levels must be divisible by 2, otherwise an `InvalidIndentationError` error must be raised.
-
-Finally, unlike YAML, in Gura it is not possible to define empty pairs to indicate null values, so the following code segment is invalid:
+Also, as mentioned previously, the indentation levels must be divisible by 4, otherwise an `InvalidIndentationError` error must be raised:
 
 ```yaml
-user1: # INVALID
+# INVALID as second level has block of 8 spaces as indentation
+services:
+    nginx:
+            host: "127.0.0.1"
+            port: 80
+
+# INVALID as 2 spaces are used as indentation block
+user:
+  name: "Gura"
 ```
 
-Or this another one:
+Finally, as empty values are not allowed, the following case considers any value below `name` as an internal block. As the indentation length between parent and child blocks is the same an `InvalidIndentationError` exception will be thrown:
 
 ```yaml
 user:
@@ -432,14 +438,14 @@ nested_mixed_array: [ [ 1, 2 ], ["a", "b", "c"] ]
 # Mixed-type arrays are allowed
 numbers: [ 0.1, 0.2, 0.5, 1, 2, 5 ]
 tango_singers: [
-  user1:
-    name: "Carlos"
-    surname: "Gardel"
-    year_of_birth: 1890,
-  user2:
-    name: "Aníbal"
-    surname: "Troilo"
-    year_of_birth: 1914
+    user1:
+        name: "Carlos"
+        surname: "Gardel"
+        year_of_birth: 1890,
+    user2:
+        name: "Aníbal"
+        surname: "Troilo"
+        year_of_birth: 1914
 ]
 ```
 
@@ -447,38 +453,39 @@ Arrays can span multiple lines. A terminating comma (also called a trailing comm
 
 ```yaml
 integers2: [
-  1, 2, 3
+    1, 2, 3
 ]
 
 integers3: [
-  1,
-  2, # this is ok
+    1,
+    2, # this is ok
 ]
 ```
 
 
 ## Variables
 
-You can define variables. They start with a `$` sign, a name and a colon. A variable name has to respect the same regex as keys.
+You can define variables. They start with a `$` sign, a name and a colon. A variable name has to respect the same regex as keys and only strings, numbers or other variable are allowed as values. If any of another kind of value type is used a parsing error must be raised.
 
 ```yaml
 $my_string_var: "127.0.0.1"
 $my_integer_var: 8080
-$my_bool_var: true
 
 nginx:
-  host: $my_string_var
-  port: $my_integer_var
-  native_auth: $my_bool_var
+    host: $my_string_var
+    port: $my_integer_var
+
+$invalid_var: null # INVALID null is not allowed as variable value
+$invalid_var2: true # INVALID booleans are not allowed as variable value
+$invalid_var3: [ 1, 2, 3 ] # INVALID complex types such as arrays or objects are not allowed as variable value
 ```
 
 Variables can not be used as key.
 
-
 ```yaml
 $hostkey: "host"
 nginx:
-  $hostkey : 4 # INVALID
+    $hostkey : 4 # INVALID
 ```
 
 Variables must be specified before they are used, in source code order. Redefining variables must raise a `DuplicatedVariableError` error, even when defined in different files (see [imports](#imports)). 
@@ -489,17 +496,17 @@ Variables can be used in *Basic strings* and *Multi-line basic strings*:
 $name: "Gura"
 key: "$name is cool"
 key_2: """Config languages using variables:
-  - $name"""
+    - $name"""
 ```
 
 Environment variables can be accessed using `$` sign too.
 
 ```yaml
 service:
-  postgres:
-    environment:
-      user: $DB_USER
-      password: $DB_PASS
+    postgres:
+        environment:
+            user: $DB_USER
+            password: $DB_PASS
 
 # You can store its value in a variable too
 $my_path: $PATH
