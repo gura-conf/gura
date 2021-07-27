@@ -400,6 +400,25 @@ user:
 In both of the above cases, an `InvalidIndentationError` error must be raised.
 
 
+**Empty objects**
+
+While the idea is that the configuration of a system is valid, complete, and static information, there may be situations where the information is empty. Assume the following case in JSON:
+
+```json
+{
+  "empty_object": {}
+}
+```
+
+To maintain compatibility with existing languages with support for empty objects such as JSON or YAML, Gura provides the `empty` keyword to cover these scenarios. The above example could be represented in Gura as follows:
+
+```yaml
+empty_object: empty
+```
+
+In this way, an explicit and clear syntax is provided to cover these rare cases, without losing the portability of the configuration to and from other languages.
+
+
 ## Array
 
 Arrays are square brackets with values inside. Whitespace is ignored. Elements are separated by commas. Arrays can contain values of the same data types as allowed in key/value pairs. Values of different types may be mixed.
