@@ -1,4 +1,4 @@
-<img align="right" src="logos/gura-200.png" alt="Gura logo">
+<img align="right" src="static/img/logos/gura-200.png" alt="Gura logo">
 
 # Gura
 

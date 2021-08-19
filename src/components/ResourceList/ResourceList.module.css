@@ -1,0 +1,15 @@
+.logo-img {
+  height: 200px;
+  width: 200px;
+}
+
+@media screen and (max-width: 966px) {
+  .logo-img {
+    float: left;
+  }
+
+  .download-buttons-div {
+    display: inline;
+    vertical-align: text-bottom;
+  }
+}

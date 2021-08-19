@@ -5,19 +5,21 @@ import CodeSnippet from "../../theme/CodeSnippet";
 import styles from '../../pages/index.module.css';
 import Link from '@docusaurus/Link';
 
-/** TODO: add docs */
+/** Code Snippet to show some Gura features */
 interface Snippet {
-    label: string, 
+    /** Label to show in pills/tabs */
+    label: string,
+    /** Link to the spec section where the concept is further explained */ 
     further: string,
-    config: string
+    /** Snippet content */
+    content: string
 }
 
-/** TODO: add docs */
 const snippets: Snippet[] = [
     {
         label: 'Strings',
         further: '/docs/spec#string',
-        config: `basic: "I'm a string. \"You can quote me\". Name\\tJos\\u00E9\\nLocation\\tSF."
+        content: `basic: "I'm a string. \"You can quote me\". Name\\tJos\\u00E9\\nLocation\\tSF."
 
 multiline_basic: """
     The quick brown \\
@@ -35,7 +37,7 @@ The first newline is
     {
         label: 'Numbers',
         further: '/docs/spec#integer',
-        config: `# Integers
+        content: `# Integers
 int1: +99
 int2: 1_000 # Separator!
 
@@ -61,7 +63,7 @@ sf6: -nan # Valid, actual encoding is implementation-specific`,
     {
         label: 'Objects',
         further: '/docs/spec#object',
-        config: `services:
+        content: `services:
     nginx:
         host: "127.0.0.1"
         port: 80
@@ -73,7 +75,7 @@ sf6: -nan # Valid, actual encoding is implementation-specific`,
     {
         label: 'Arrays',
         further: '/docs/spec#array',
-        config: `numbers: [ 0.1, 0.2, 0.5, 1, 2, 5 ]
+        content: `numbers: [ 0.1, 0.2, 0.5, 1, 2, 5 ]
 
 # Nested and mixed
 numbers_and_strings: [ [ 1, 2 ], ["a", "b", "c"] ]
@@ -93,7 +95,7 @@ tango_singers: [
     {
         label: 'Variables',
         further: '/docs/spec#variables',
-        config: `$my_host: "127.0.0.1"
+        content: `$my_host: "127.0.0.1"
 nginx:
     host: $my_host
     port: 8080`
@@ -114,7 +116,7 @@ const FeaturesReview = () => {
                                 ))}>
                                     {snippets.map((props, idx) => (
                                         <TabItem key={idx} value={props.label}>
-                                            <CodeSnippet className={styles.configSnippet} snippet={props.config} />
+                                            <CodeSnippet className={styles.configSnippet} snippet={props.content} />
                                             <Link className='button button--outline button--secondary'
                                                 to={props.further}>
                                                 Read more about {props.label.toLowerCase()}
@@ -133,7 +135,7 @@ const FeaturesReview = () => {
                         </p>
                         <Link className='button button--outline button--primary'
                             to='docs/spec'>
-                            Read more the full specs!
+                            Read more in the full specs!
                         </Link>
                     </div>
                 </div>

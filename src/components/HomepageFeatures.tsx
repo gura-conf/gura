@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './HomepageFeatures.module.css';
 
+/** Gura feature structure */
 interface Feature {
     img: string,
     title: string,
     description: JSX.Element
 }
 
-
-const FeatureList: Feature[] = [
+const featureList: Feature[] = [
     {
         title: 'Simple',
         img: require('../../static/img/features/simple.png').default,
@@ -38,8 +38,8 @@ const FeatureList: Feature[] = [
     },
 ];
 
-
-function Feature(props: Feature) {
+/** Renders a Gura's feature section */
+const Feature = (props: Feature) => {
     return (
         <div className='col col--4'>
             <div className="text--center">
@@ -54,7 +54,7 @@ function Feature(props: Feature) {
 }
 
 /**
- * Renders list of features
+ * Renders list of Gura's features
  * @returns Component
  */
 export default function HomepageFeatures() {
@@ -62,8 +62,8 @@ export default function HomepageFeatures() {
         <section className={`${styles.features} darker-row`}>
             <div className="container">
                 <div className="row">
-                    {FeatureList.map((feature, idx) => (
-                        <Feature key={idx} {...feature} />
+                    {featureList.map((feature) => (
+                        <Feature key={feature.title} {...feature} />
                     ))}
                 </div>
             </div>

@@ -14,9 +14,12 @@ module.exports = {
       title: 'Gura',
       logo: {
         alt: 'Gura Logo',
+        // TODO: resize to increase performance
         src: 'img/gura-thumbnail.png',
       },
       items: [
+        { to: 'docs/gura', label: 'Docs', position: 'left' },
+        { to: 'resources', label: 'Resources', position: 'left' },
         {
           type: 'docsVersionDropdown',
           position: 'right'
