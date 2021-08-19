@@ -22,7 +22,7 @@ When transferring Gura files over the internet, the appropriate MIME type is `ap
 
 ## ABNF Grammar
 
-A formal description of Gura's syntax is available, as a separate [ABNF file][abnf].
+A formal description of Gura's syntax is available in the [ABNF section][abnf].
 
 
 ## License
@@ -30,4 +30,4 @@ A formal description of Gura's syntax is available, as a separate [ABNF file][ab
 Gura is distributed under the terms of the MIT license.
 
 
-[abnf]: https://github.com/gura-conf/gura/blob/master/gura.abnf
+[abnf]: abnf.md
