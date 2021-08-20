@@ -1,0 +1,11 @@
+/* stylelint-disable docusaurus/copyright-header */
+
+.usage-img {
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 966px) {
+  .usage-img {
+    margin-top: 10%;
+  }
+}

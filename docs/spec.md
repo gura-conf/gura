@@ -1,23 +1,6 @@
-# Gura
-
-Gura configuration file.
-
-By Jware solutions.
-
-<!-- TODO: change yaml markdown when Gura is accepted as a configuration language -->
-
-
-## Objectives
-
-Gura aims to be a minimal configuration file format that's easy to read due to its similarity with YAML. The key of the language is that there is one and only one way to do things. That feature make it ease to learn, parse, implement and understand.
-
-
-## Standard errors
-
-The Gura specifications define the semantic errors that should be thrown in certain situations to define implementation-agnostic behavior so that you can receive the same type of error regardless of the programming language from which you are using Gura.
-
-Each type of error will be mentioned in the respective sections.
-
+---
+sidebar_position: 2
+---
 
 # Specs
 
@@ -403,9 +386,6 @@ user:
     surname: "Troilo"
 ```
 
-In both of the above cases, an `InvalidIndentationError` error must be raised.
-
-
 **Empty objects**
 
 While the idea is that the configuration of a system is valid, complete, and static information, there may be situations where the information is empty. Assume the following case in JSON:
@@ -589,25 +569,3 @@ $common_path: "/extremely/long/path/to/some/useful/directory"
 import "$common_path/one.ura"
 import "$common_path/two.ura"
 ```
-
-
-## Filename Extension
-
-Gura files should use the extension `.ura`.
-
-
-## MIME Type
-
-When transferring Gura files over the internet, the appropriate MIME type is `application/gura`.
-
-
-## ABNF Grammar
-
-A formal description of Gura's syntax is available, as a separate [ABNF file][abnf].
-
-[abnf]: ./gura.abnf
-
-
-## License
-
-Gura is distributed under the terms of the MIT license.

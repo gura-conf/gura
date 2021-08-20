@@ -1,18 +1,16 @@
-;; This document describes Gura's syntax, using the ABNF format (defined in
-;; RFC 5234 -- https://www.ietf.org/rfc/rfc5234.txt).
-;;
-;; All valid Gura documents will match this description, however certain
-;; invalid documents would need to be rejected as per the semantics described
-;; in the supporting text description.
+---
+sidebar_position: 4
+---
 
-;; It is possible to try this grammar interactively, using instaparse.
-;;     http://instaparse.mojombo.com/
-;;
-;; To do so, in the lower right, click on Options and change `:input-format` to
-;; ':abnf'. Then paste this entire ABNF document into the grammar entry box
-;; (above the options). Then you can type or paste a sample Gura document into
-;; the beige box on the left. Tada!
+# ABNF grammar
 
+This document describes Gura's syntax, using the ABNF format (defined in RFC 5234 -- https://www.ietf.org/rfc/rfc5234.txt).
+
+All valid Gura documents will match this description, however certain invalid documents would need to be rejected as per the semantics described in the supporting text description.
+
+It is possible to try this grammar interactively, using [instaparse](http://instaparse.mojombo.com/). To do so, in the lower right, click on Options and change `:input-format` to `:abnf`. Then paste this entire ABNF document into the grammar entry box (above the options). Then you can type or paste a sample Gura document into the beige box on the left.
+
+```abnf
 ;; Overall Structure
 gura = expression *( newline expression )
 
@@ -60,7 +58,16 @@ unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
 keyval-sep = ws %x3A ws ; ':' Colon
 
 ;; Values
-val = string / boolean / array / float / integer / variable-value
+val = null / string / boolean / array / float / integer / variable-value / empty
+
+
+;; Null
+
+null = %x6E.75.6C.6C ; null
+
+
+;; Empty
+empty = %x65.6D.70.74.79 ; empty
 
 
 ;; String
@@ -184,3 +191,4 @@ ws-comment-newline = *( wschar / [ comment ] newline )
 ALPHA = %x41-5A / %x61-7A ; A-Z / a-z
 DIGIT = %x30-39 ; 0-9
 HEXDIG = DIGIT / "A" / "B" / "C" / "D" / "E" / "F"
+```

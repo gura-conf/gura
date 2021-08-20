@@ -1,10 +1,10 @@
-<img align="right" src="logos/gura-200.png" alt="Gura logo">
+<img align="right" src="static/img/logos/gura-200.png" alt="Gura logo">
 
 # Gura
 
 Gura is a file format for *configuration files*. Gura is as **flexible as YAML** and **simple and readable like TOML**. Its syntax is clear and powerful, yet familiar for YAML/TOML users:
 
-> This repository contains the in-development version of the Gura specification.
+> This repository contains the source code of the Gura specification.
 > You can find the released versions at https://gura.netlify.app/.
 
 ````yaml
@@ -37,7 +37,7 @@ The file extension for Gura is `ura`. We recommend the filename `config.ura` for
 
 To learn more about Gura, you can read the [Official Gura Documentation][specs].
 
-Currently, Gura has, among others, a [Python implementation][gura-python-parser] you can install with `pip install gura` and start using today.
+Currently, Gura has, among many others, a [Python implementation][gura-python-parser] you can install with `pip install gura` and start using today.
 
 ```python
 import gura
@@ -105,9 +105,33 @@ Below is the list of IDEs plugins available for Gura. If you have developed a pl
 
 All help is more than welcome. You can:
 
-- You can join to our [community in Discord][discord-server]!
+- Join to our [community in Discord][discord-server]!
 - Write an RFC via our [GitHub Discussions][discussions] if you feel there is a bug in Gura or a missing feature.
 - Contribute to some of the implementations, or write your own in the programming language of your choice! In the latter case don't forget to make an issue letting us know that your implementation is available so we can add it to the [Implementations](#implementations) list.
+
+If you want to contribute with this website: it is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+
+### Installation
+
+```console
+yarn install
+```
+
+### Local Development
+
+```console
+yarn start
+```
+
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+
+### Build
+
+```console
+yarn build
+```
+
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
 
 ## Rationale
@@ -173,8 +197,7 @@ Gura is distributed under the terms of the MIT license.
 
 
 [blog]: https://noyaml.com/
-[specs]: ./gura.md
-[specs-site]: https://gura.netlify.app/
+[specs]: https://gura.netlify.app/docs/gura
 [boolean-workaround]: https://stackoverflow.com/questions/53648244/specifying-the-string-value-yes-in-a-yaml-property
 [safe-yaml]: https://pyyaml.docsforge.com/master/api/yaml/safe_load/
 [yaml-specs]: https://yaml.org/spec/1.2/spec.html
