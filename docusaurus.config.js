@@ -14,7 +14,6 @@ module.exports = {
       title: 'Gura',
       logo: {
         alt: 'Gura Logo',
-        // TODO: resize to increase performance
         src: 'img/gura-thumbnail.png',
       },
       items: [
