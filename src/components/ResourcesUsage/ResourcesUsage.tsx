@@ -16,8 +16,7 @@ const usageExamplesList: UsageExample[] = [
         img: require('../../../static/img/logos-usage/IDE-extension.png').default,
         description: (
             <>
-            {/* TODO: complete */}
-                Gura is simple, and its "one way of doing things" philosophy minimizes the possibility of error and its implementation complexity.
+                Use the Gura thumbnail to style your extensions!
             </>
         )
     },
@@ -26,8 +25,7 @@ const usageExamplesList: UsageExample[] = [
         img: require('../../../static/img/logos-usage/development.png').default,
         description: (
             <>
-            {/* TODO: complete */}
-                Gura is simple, and its "one way of doing things" philosophy minimizes the possibility of error and its implementation complexity.
+                You can use the official logo for the design of your tools and websites!
             </>
         )
     },
@@ -36,8 +34,7 @@ const usageExamplesList: UsageExample[] = [
         img: require('../../../static/img/logos-usage/blog.png').default,
         description: (
             <>
-            {/* TODO: complete */}
-                Gura is simple, and its "one way of doing things" philosophy minimizes the possibility of error and its implementation complexity.
+                Whether it's your blog, your library, or any project you have in mind, you have Gura's resources at hand!
             </>
         )
     }
