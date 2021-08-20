@@ -3,14 +3,16 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from '../../pages/index.module.css';
 
 
-/** TODO: add docs */
+/** Config language difference section */
 interface DifferenceElem {
+	/** Title of the section */
 	title: string,
+	/** Image of the language with which the comparison is being made */
 	imageUrl: string,
+	/** HTML/string content of the section */
 	description: JSX.Element
 }
 
-/** TODO: add docs */
 const differences: DifferenceElem[] = [
 	{
 		title: 'Differences with YAML',
@@ -93,11 +95,7 @@ interface LanguageComparisonProps {
 }
 
 
-/**
- * TODO: add docs
- * @param props 
- * @returns 
- */
+/** Renders a language comparison section */
 function LanguageComparison(props: LanguageComparisonProps) {
 	const { imageUrl, title, description } = props.difference
 	const imgUrl = useBaseUrl(imageUrl);
@@ -115,10 +113,7 @@ function LanguageComparison(props: LanguageComparisonProps) {
 }
 
 
-/**
- * TODO: add docs
- * @returns 
- */
+/** A comparison section with other config languages */
 export const DifferencesSection = () => (
 	<section className={`padded-section ${styles.features}`}>
 		<div className="container margin-vert--md">
