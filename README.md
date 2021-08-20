@@ -2,6 +2,8 @@
 
 # Gura
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/599a9cad-5a04-4e87-9f7b-1457004eabfb/deploy-status)](https://app.netlify.com/sites/gura/deploys)
+
 Gura is a file format for *configuration files*. Gura is as **flexible as YAML** and **simple and readable like TOML**. Its syntax is clear and powerful, yet familiar for YAML/TOML users:
 
 > This repository contains the source code of the Gura specification.
