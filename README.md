@@ -143,7 +143,7 @@ Gura was born from the need to have a configuration language that is human reada
 
 ### Differences with YAML
 
-YAML  offered a readable alternative to JSON or INI for a configuration file. While TOML was great for basic files because of its simplicity,  YAML provided a readable solution when the complexity of the file grew. However, as [the NOYAML manifesto][blog] argues, we should stop supporting that format. The reason? [YAML is unnecessarily complex][reddit-post]). We highlight main issues with YAML that Gura tries to solve.
+YAML  offered a readable alternative to JSON or INI for a configuration file. While TOML was great for basic files because of its simplicity,  YAML provided a readable solution when the complexity of the file grew. However, as [the NOYAML manifesto][blog] argues, we should stop supporting that format. The reason? [YAML is unnecessarily complex][reddit-post]. We highlight main issues with YAML that Gura tries to solve.
 
 - Multiple different ways to define a list and the elements inside it
 - 5 (!) ways to define a string

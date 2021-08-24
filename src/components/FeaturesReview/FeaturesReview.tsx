@@ -24,15 +24,17 @@ const snippets: Snippet[] = [
 multiline_basic: """
     The quick brown \\
     fox jumps over \\
-    the lazy dog."""
+    the lazy dog.
+"""
 
-literal: 'C:\Users\\nodejs\\templates'
+literal: 'C:\\Users\\nodejs\\templates'
 
-multiline_literal: lines: '''
+multiline_literal: '''
 The first newline is
     trimmed in raw strings.
     All other whitespace
-    is preserved.`
+    is preserved.
+'''`
     },
     {
         label: 'Numbers',

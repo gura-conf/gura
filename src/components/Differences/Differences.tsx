@@ -20,7 +20,7 @@ const differences: DifferenceElem[] = [
 		description: (
 			<>
 				<p>
-					YAML offered a readable alternative to JSON or INI for a configuration file. While TOML was great for basic files because of its simplicity, YAML provided a readable solution when the complexity of the file grew. However, as the <a target='_blank' rel='noopener noreferrer' href='https://noyaml.com/'>NOYAML manifesto</a> argues, we should stop supporting that format. The reason? <a target='_blank' rel='noopener noreferrer' href='https://www.reddit.com/r/programming/comments/iqwbek/stop_adding_support_for_yaml_in_your_products/'>YAML is unnecessarily complex</a>). We highlight main issues with YAML that Gura tries to solve.
+					YAML offered a readable alternative to JSON or INI for a configuration file. While TOML was great for basic files because of its simplicity, YAML provided a readable solution when the complexity of the file grew. However, as the <a target='_blank' rel='noopener noreferrer' href='https://noyaml.com/'>NOYAML manifesto</a> argues, we should stop supporting that format. The reason? <a target='_blank' rel='noopener noreferrer' href='https://www.reddit.com/r/programming/comments/iqwbek/stop_adding_support_for_yaml_in_your_products/'>YAML is unnecessarily complex</a>. We highlight main issues with YAML that Gura tries to solve.
 
 					<ul>
 						<li>Multiple different ways to define a list and the elements inside it.</li>
