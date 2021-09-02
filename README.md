@@ -146,12 +146,12 @@ Gura was born from the need to have a configuration language that is human reada
 YAML  offered a readable alternative to JSON or INI for a configuration file. While TOML was great for basic files because of its simplicity,  YAML provided a readable solution when the complexity of the file grew. However, as [the NOYAML manifesto][blog] argues, we should stop supporting that format. The reason? [YAML is unnecessarily complex][reddit-post]. We highlight main issues with YAML that Gura tries to solve.
 
 - Multiple different ways to define a list and the elements inside it
-- 5 (!) ways to define a string
 - 4 (!) ways to define a boolean
 - Boolean automatically inferred from strings ([workarounds][boolean-workaround])
+- Unnecessary unquoted strings that lead to float type inference problems
 - Serious security issues. [Safe YAML][safe-yaml] attempts to address those, but only those.
 - [Increadibly long YAML specs][yaml-specs] for what is supposed to be a simple configuration language? 
-- Special data types such as like *Date* or *Datetime* are defined in the spec, but the definition of their semantics is relegated to each specific implementation.  
+- Special data types such as *Date* or *Datetime* are defined in the spec, but the definition of their semantics is relegated to each specific implementation.  
 
 All the previous points lead to a difficult implementation in any programming language, it is enough to see the repositories of the different languages to realize that carrying out a YAML parser is a complicated task.
 

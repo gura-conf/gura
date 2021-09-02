@@ -24,12 +24,12 @@ const differences: DifferenceElem[] = [
 
 					<ul>
 						<li>Multiple different ways to define a list and the elements inside it.</li>
-						<li>5 (!) ways to define a string.</li>
 						<li>4 (!) ways to define a boolean.</li>
 						<li>Boolean automatically inferred from strings (<a target='_blank' rel='noopener noreferrer' href='https://stackoverflow.com/questions/53648244/specifying-the-string-value-yes-in-a-yaml-property'>workarounds</a>).</li>
+						<li>Unnecessary unquoted strings that lead to float type inference problems.</li>
 						<li>Serious security issues. <a target='_blank' rel='noopener noreferrer' href='https://pyyaml.docsforge.com/master/api/yaml/safe_load/'>Safe YAML</a> attempts to address those, but only those.</li>
 						<li><a target='_blank' rel='noopener noreferrer' href='https://yaml.org/spec/1.2/spec.html'>Increadibly long YAML specs</a> for what is supposed to be a simple configuration language?</li>
-						<li>Special data types such as like Date or Datetime are defined in the spec, but the definition of their semantics is relegated to each specific implementation.</li>
+						<li>Special data types such as <i>Date</i> or <i>Datetime</i> are defined in the spec, but the definition of their semantics is relegated to each specific implementation.</li>
 					</ul>
         		</p>
 			</>
