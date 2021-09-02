@@ -422,6 +422,7 @@ tango_singers: [
         name: "Carlos"
         surname: "Gardel"
         year_of_birth: 1890,
+
     user2:
         name: "Aníbal"
         surname: "Troilo"
@@ -438,7 +439,32 @@ integers2: [
 
 integers3: [
     1,
-    2, # this is ok
+    2, # This is ok
+]
+```
+
+Since the comma is the only valid element separator for an array, it is recommended to add a line between elements that are objects or multiple key/values to improve legibility:
+
+```yaml
+# It is valid but a little hard to read
+singers: [
+    name: "Andrea"
+    surname: "Bocelli"
+    gender: "Opera",
+    name: "Jimi"
+    surname: "Hendrix"
+    gender: "Rock"
+]
+
+# Much better!
+singers: [
+    name: "Andrea"
+    surname: "Bocelli"
+    gender: "Opera",
+
+    name: "Jimi"
+    surname: "Hendrix"
+    gender: "Rock"
 ]
 ```
 
@@ -555,7 +581,7 @@ $name: "Elisa"
 import "two.ura"
 import "/absolute/path/to/three.ura"  # You can use absolute path too
 
-# Life, $my_var and $name are available here
+# life, $my_var and $name are available here
 my_name: $name
 
 # life: "some value" # This WILL NOT work as it is defined in one.ura which is included in two.ura
