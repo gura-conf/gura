@@ -82,6 +82,24 @@ name: "Carlos"
 name: "Anibal"
 ```
 
+**Literal keys**
+
+Gura was created with simplicity, maintainability, and **portability** in mind. In a production environment, you will likely have to work with different tools that handle different configuration languages. To make Gura compatible with other configuration schemes, *Literal Keys* are provided, these are defined between grave accents \` (U+0060 GRAVE ACCENT) and can contain any valid UTF-8 character.
+
+If the \` character is required within a Literal Key, it must be escaped. Any character from the list in the [String section](#string) can be escaped inside Literal Keys too. If any other character that has not been previously mentioned is escaped, `InvalidEscapedCharacterError` must be raised, exactly as if it were a string.
+
+```yaml
+`a/literal.key!`: "Some value"
+`Escaped\`char\tWithTabs`: true
+`\invalid`: false  # INVALID: \i is not a valid escape sentence
+```
+
+:::caution
+
+The purpose of the Literal Keys is solely to provide compatibility with other configuration languages. **It is recommended to avoid them unless strictly necessary**, in order to maintain a clean and standardized configuration.
+
+:::
+
 
 ## Null
 
