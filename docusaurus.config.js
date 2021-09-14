@@ -54,8 +54,9 @@ module.exports = {
            * Skip the next release docs when versioning is enabled.
            * This will not generate HTML files in the production build for documents
            * in `/docs/next` directory, only versioned docs.
+           * TODO: set to false when finished version 2.0.0
            */
-          includeCurrentVersion: false,
+          includeCurrentVersion: true
         },
         theme: {
           customCss: [
