@@ -47,13 +47,13 @@ Values must have one of the following types.
 Unspecified values are invalid.
 
 ```yaml
-key: # INVALID
+key:  # INVALID
 ```
 
 There must be a newline (or EOF) after a key/value pair.
 
 ```
-first: "Carlitos" last: "Gardel" # INVALID
+first: "Carlitos" last: "Gardel"  # INVALID
 ```
 
 
@@ -400,7 +400,7 @@ Finally, as empty values are not allowed, the following case considers any value
 
 ```yaml
 user:
-    name: # INVALID
+    name:  # INVALID
     surname: "Troilo"
 ```
 
@@ -499,9 +499,9 @@ nginx:
     host: $my_string_var
     port: $my_integer_var
 
-$invalid_var: null # INVALID null is not allowed as variable value
-$invalid_var2: true # INVALID booleans are not allowed as variable value
-$invalid_var3: [ 1, 2, 3 ] # INVALID complex types such as arrays or objects are not allowed as variable value
+$invalid_var: null  # INVALID null is not allowed as variable value
+$invalid_var2: true  # INVALID booleans are not allowed as variable value
+$invalid_var3: [ 1, 2, 3 ]  # INVALID complex types such as arrays or objects are not allowed as variable value
 ```
 
 Variables can not be used as key.
@@ -509,7 +509,7 @@ Variables can not be used as key.
 ```yaml
 $hostkey: "host"
 nginx:
-    $hostkey : 4 # INVALID
+    $hostkey : 4  # INVALID
 ```
 
 Variables must be specified before they are used, in source code order. Redefining variables must raise a `DuplicatedVariableError` error, even when defined in different files (see [imports](#imports)). 
@@ -560,12 +560,12 @@ Imports must occur at the beginning of the file and there must be no blanks in f
 
 ```yaml
 import "another_file.ura" # Good
-  import "another_file.ura" # INVALID: there are blanks before import
-import   "another_file.ura" # INVALID: there are more than one whitespace between import and file name
+  import "another_file.ura"  # INVALID: there are blanks before import
+import   "another_file.ura"  # INVALID: there are more than one whitespace between import and file name
 
 some_key: "Some value"
 
-import "another_file.ura" # INVALID: is not at the beginning of the file
+import "another_file.ura"  # INVALID: is not at the beginning of the file
 ```
 
 <!-- TODO: analyze require vs include https://www.w3schools.com/PHP/php_includes.asp -->
@@ -613,3 +613,9 @@ $common_path: "/extremely/long/path/to/some/useful/directory"
 import "$common_path/one.ura"
 import "$common_path/two.ura"
 ```
+
+To avoid errors in environments without filesystem access, prevent security problems in sensitive environments, or whatever the reason, each implementation must provide an import disabling mechanism. This flag must be part of the process of parsing a text string in Gura format to a structure useful for the implementation (e.g. a dictionary in Python, an object in Javascript, a HashMap in Java and Rust, etc).
+
+In case the user sets this flag to `true` it should not be possible to import Gura files into one, and any `import` statement encountered should throw `ImportDisabledError`. 
+
+This gives more control to the users to use Gura in the most efficient way for their requirements.
