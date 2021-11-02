@@ -22,13 +22,14 @@ All implementations that parse or output text in Gura format must contemplate th
 
 It is vitally important to understand that the implementation of a parser is a complex task and **will probably involve the use of more complex data structures than the one just mentioned**. 
 
-These structures should be considered internal and act as utilities to perform certain tasks. For example, the official parsers of Python, Javascript, and Rust (which can be found in the [list of implementations][implementations]) have internal structures to map the indentation, import, variables, among other structures that are only of interest to developers but are not part of the specifications that apply to the end-user. These structures can be freely defined by the tool manager(s) and are not subject to any standard by the Gura team
+These structures should be considered internal and act as utilities to perform certain tasks. For example, the official parsers of Python, Javascript, and Rust (which can be found in the [list of implementations][implementations]) have internal structures to map the indentation, import, variables, among other structures that are only of interest to developers but are not part of the specifications that apply to the end-user. These structures can be freely defined by the tool manager(s) and are not subject to any standard by the Gura team.
 
 ## Standard errors
 
 
 ## Testing
 
+A repository containing several tests for validating files with valid Gura format, and all the exceptions listed above, is made available to developers. It can be found [here][testing-repository].
 
 [null-reference]: http://localhost:3000/docs/next/spec#null
 [bool-reference]: http://localhost:3000/docs/next/spec#boolean
@@ -38,3 +39,4 @@ These structures should be considered internal and act as utilities to perform c
 [array-reference]: http://localhost:3000/docs/next/spec#array
 [object-reference]: http://localhost:3000/docs/next/spec#object
 [implementations]: https://github.com/gura-conf/gura#library-implementations
+[testing-repository]: https://github.com/gura-conf/testing
