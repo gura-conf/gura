@@ -566,7 +566,7 @@ life: 42
 ```yaml
 import "one.ura"
 
-$my_var: true
+$my_var: "My var value"
 ```
 
 **three.ura**:
