@@ -21,14 +21,16 @@ expression =/ object
 
 ;; Variables
 dollar-sign =  %x24  ; $
-variable-definition = dollar-sign keyval ws [ comment ]
-variable-value = ws dollar-sign unquoted-key ws [ comment]
+var-val = string / float / integer / other-variable
+keyval-var = unquoted-key keyval-sep var-val
+variable-definition = dollar-sign keyval-var ws [ comment ]
+other-variable = ws dollar-sign unquoted-key ws [ comment]
 
 ;; Imports
 import-keyword = %x69 %x6D %x70 %x6F %x72 %x74 ; "import"
 import = import-keyword wschar basic-string
 
-; Objects
+;; Objects
 object = ws unquoted-key keyval-sep ws [comment] newline object
 object =/ keyval-with-spaces *( newline object )
 
@@ -57,12 +59,12 @@ keyval = unquoted-key keyval-sep val
 unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
 keyval-sep = ws %x3A ws ; ':' Colon
 
+
 ;; Values
-val = null / string / boolean / array / float / integer / variable-value / empty
+val = null / string / boolean / array / float / integer / other-variable / empty
 
 
 ;; Null
-
 null = %x6E.75.6C.6C ; null
 
 
