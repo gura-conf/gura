@@ -193,7 +193,7 @@ Gura **will always be focused on simplicity**. Therefore, we are reluctant to su
 I want to give my sincere thanks to [Facundo Quiroga][quiroga] and [Ulises Jeremias Cornejo Fandos][cornejo-fandos] for their guidance and valuable opinions during the design and implementation of Gura.
 
 
-## Licence
+## License
 
 Gura is distributed under the terms of the MIT license.
 
