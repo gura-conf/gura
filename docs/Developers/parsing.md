@@ -27,7 +27,7 @@ These structures should be considered internal and act as utilities to perform c
 
 ## Standard errors
 
-All implementations must consider the following errors during the parsing of Gura text to a representation in the programming language used, to comply with the language specifications:
+All implementations must consider the following errors (all of them are duly entered in the corresponding sections on the [Specs page][specs-page]) during the parsing of Gura text to a representation in the programming language used, to comply with the language specifications:
 
 - **ParseError**: Gura syntax is invalid.
 - **VariableNotDefinedError**: a variable is not defined.
@@ -51,13 +51,14 @@ A repository containing several tests for validating files with valid Gura forma
 We encourage all developers to use the tests provided to corroborate the correct functioning of their tools. And to add some tests they consider important during their development (they could be useful for other Gura projects).
 
 
-[null-reference]: http://localhost:3000/docs/next/spec#null
-[bool-reference]: http://localhost:3000/docs/next/spec#boolean
-[string-reference]: http://localhost:3000/docs/next/spec#string
-[integer-reference]: http://localhost:3000/docs/next/spec#integer
-[float-reference]: http://localhost:3000/docs/next/spec#float
-[array-reference]: http://localhost:3000/docs/next/spec#array
-[object-reference]: http://localhost:3000/docs/next/spec#object
+[specs-page]: /docs/spec
+[null-reference]: /docs/spec#null
+[bool-reference]: /docs/spec#boolean
+[string-reference]: /docs/spec#string
+[integer-reference]: /docs/spec#integer
+[float-reference]: /docs/spec#float
+[array-reference]: /docs/spec#array
+[object-reference]: /docs/spec#object
 [implementations]: https://github.com/gura-conf/gura#library-implementations
 [error-reporting-tests]: https://github.com/gura-conf/testing/tree/main/error_reporting
 [testing-repository]: https://github.com/gura-conf/testing
