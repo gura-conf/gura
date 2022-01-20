@@ -37,12 +37,16 @@ All implementations must consider the following errors during the parsing of Gur
 - **FileNotFoundError**: an imported file was not found.
 - **DuplicatedImportError**: a file is imported more than once.
 
+For all cases, **it is recommended that the developing tool provides the line** (*1-Based* indexing, like most IDEs or compilers) **and the global position of the text** (*0-Based* indexing, like most IDEs or compilers) where the error occurred. A series of tests (an explanation of this repository is provided below) are provided [here][error-reporting-tests] to check the correct error reporting.
+
 As mentioned above in the *Basic types* section, it could be possible that some internal errors may be used during parsing. However, it is reminded that such errors are not part of the formal language specifications and should not be accessible by end-users through the tool API.
 
 
 ## Testing
 
-A repository containing several tests for validating files with valid Gura format, and all the errors listed above, is made available to developers. It can be found [here][testing-repository].
+A repository containing several tests for validating files with valid Gura format, and all the errors listed above, is made available to developers [here][testing-repository].
+
+We encourage all developers to use the tests provided to corroborate the correct functioning of their tools. And to add some tests they consider important during their development (they could be useful for other Gura projects).
 
 
 [null-reference]: http://localhost:3000/docs/next/spec#null
@@ -53,4 +57,5 @@ A repository containing several tests for validating files with valid Gura forma
 [array-reference]: http://localhost:3000/docs/next/spec#array
 [object-reference]: http://localhost:3000/docs/next/spec#object
 [implementations]: https://github.com/gura-conf/gura#library-implementations
+[error-reporting-tests]: https://github.com/gura-conf/testing/tree/main/error_reporting
 [testing-repository]: https://github.com/gura-conf/testing
