@@ -14,11 +14,11 @@ All implementations that parse or output text in Gura format must contemplate th
 
 - **Null**: defines a unit value. Different programming languages have different ways of representing this value, for example, in Java, Javascript or PHP it is defined with the type null, in Python it is None, in Ruby it is nil, Option in Rust, and so on. Use the corresponding value depending on which language you are implementing your parser in. [Reference][null-reference].
 - **Bool**: sets the boolean values that in Gura are defined through the keywords `false` and `true`. [Reference][bool-reference].
-- **String**: defines text strings. Regardless of whether they are basic, literal, and/or multiline strings.[Reference][string-reference].
+- **String**: defines text strings. Regardless of whether they are basic, literal, and/or multiline strings. [Reference][string-reference].
 - **Integer**: defines signed integers. [Reference][integer-reference].
 - **Float**: defines signed floating-point number. [Reference][float-reference].
 - **Array**: defines an ordered collection of Gura elements. [Reference][array-reference].
-- **Object**: defines an ordered structure containing keys that uniquely [reference][] a Gura element. Examples of this type of structure in programming languages are objects in Javascript, a dictionary in Python, a HashMap in Java or Rust, a map in C++, etc. Where the key is a String, and the value is a Gura element that is part of this basic data list. [Reference][object-reference].
+- **Object**: defines an ordered structure containing keys that uniquely reference a Gura element. Examples of this type of structure in programming languages are objects in Javascript, a dictionary in Python, a HashMap in Java or Rust, a map in C++, etc. Where the key is a String, and the value is a Gura element that is part of this basic data list. [Reference][object-reference].
 
 It is vitally important to understand that the implementation of a parser is a complex task and **will probably involve the use of more complex data structures than the one just mentioned**. 
 
@@ -34,8 +34,10 @@ All implementations must consider the following errors during the parsing of Gur
 - **InvalidIndentationError**: indentation is invalid.
 - **DuplicatedVariableError**: a variable is defined more than once.
 - **DuplicatedKeyError**: a key is defined more than once.
-- **FileNotFoundError**: an imported file was not found.
+- **InvalidEscapedCharacterError**: an escape sequences not listed in [String section][string-reference] is used.
+- **FileNotFoundError**: an imported file does not exist.
 - **DuplicatedImportError**: a file is imported more than once.
+- **ImportDisabledError**: an `import` sentence is found in Gura file with the import setting disabled.
 
 For all cases, **it is recommended that the developing tool provides the line** (*1-Based* indexing, like most IDEs or compilers) **and the global position of the text** (*0-Based* indexing, like most IDEs or compilers) where the error occurred. A series of tests (an explanation of this repository is provided below) are provided [here][error-reporting-tests] to check the correct error reporting.
 
