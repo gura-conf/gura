@@ -1,6 +1,6 @@
 ---
 title: Availability
-sidebar_position: 6
+sidebar_position: 5
 ---
 
 Even if you are developing a parser or a tokenizer. It is strongly recommended that the source code of the tools be made available, as it is easier to access it, report bugs, promote collaboration between the different developers and empower Gura.
