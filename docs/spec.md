@@ -489,19 +489,23 @@ singers: [
 
 ## Variables
 
-You can define variables. They start with a `$` sign, a name and a colon. A variable name has to respect the same regex as keys and only strings, numbers or other variable are allowed as values. If any of another kind of value type is used a parsing error must be raised.
+You can define variables. They start with a `$` sign, a name and a colon. A variable name has to respect the same regex as keys, and only basic types (null, strings, booleans, numbers, and `empty`) or another variable are allowed as values. If another value type is used, a parsing error must be raised.
 
 ```yaml
 $my_string_var: "127.0.0.1"
 $my_integer_var: 8080
+$my_bool_var: true
 
 nginx:
     host: $my_string_var
     port: $my_integer_var
+    ignore_warning: $my_bool_var
 
-$invalid_var: null  # INVALID null is not allowed as variable value
-$invalid_var2: true  # INVALID booleans are not allowed as variable value
-$invalid_var3: [ 1, 2, 3 ]  # INVALID complex types such as arrays or objects are not allowed as variable value
+$invalid_var: [ 1, 2, 3 ]  # INVALID complex types such as arrays or objects are not allowed as variable value
+
+# INVALID complex types such as arrays or objects are not allowed as variable value
+$invalid_var_2: service:
+  name: "Service name"
 ```
 
 Variables can not be used as key.

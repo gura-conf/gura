@@ -4,12 +4,20 @@ sidebar_position: 2
 
 # Changelog
 
-On this page are listed all the changes introduced in Gura specs in version 2.0.0.
+On this page are listed all the changes introduced in Gura specs (version 2.0.0).
+
+
+## From 1.0.0 ➞ 2.0.0
 
 
 ### Literal Keys
 
 Literal Keys were introduced in [Keys section][keys-section] to provide portability with other configuration languages ([related Github discussion][discussion-literal-keys]).
+
+
+### Variables support all basic types
+
+[Booleans][boolean-section], `empty` and [null][null-section] values can now also be assigned as the value of a [variable][variables-section]. This change was introduced because it adds value to the language without sacrificing simplicity.
 
 
 ### Added a mechanism to make imports optional
@@ -28,8 +36,11 @@ Added a new [Developers section][developers-section] listing some useful convent
 
 
 [keys-section]: spec#keys
+[boolean-section]: spec#boolean
+[null-section]: spec#null
 [discussion-literal-keys]: https://github.com/gura-conf/gura/discussions/10
 [import-section]: spec#imports
+[variables-section]: spec#variables
 [string-section]: spec#string
 [discussion-escape-chars]: https://github.com/gura-conf/gura/discussions/11
 [developers-section]: Developers/introduction

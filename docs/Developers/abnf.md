@@ -21,7 +21,6 @@ expression =/ object
 
 ;; Variables
 dollar-sign =  %x24  ; $
-var-val = string / float / integer / other-variable
 keyval-var = unquoted-key keyval-sep var-val
 variable-definition = dollar-sign keyval-var ws [ comment ]
 other-variable = ws dollar-sign unquoted-key ws [ comment]
@@ -62,6 +61,7 @@ keyval-sep = ws %x3A ws ; ':' Colon
 
 ;; Values
 val = null / string / boolean / array / float / integer / other-variable / empty
+var-val = null / string / boolean / float / integer / other-variable / empty
 
 
 ;; Null
