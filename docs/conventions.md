@@ -30,4 +30,4 @@ A formal description of Gura's syntax is available in the [ABNF section][abnf].
 Gura is distributed under the terms of the MIT license.
 
 
-[abnf]: abnf.md
+[abnf]: Developers/abnf.md
