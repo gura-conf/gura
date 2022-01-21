@@ -96,6 +96,13 @@ tango_singers: [
 ]`
     },
     {
+        label: 'Booleans',
+        further: '/docs/spec#boolean',
+        content: `# Just simple bool values. No magic, only one way
+is_true: true
+is_false: false`
+    },
+    {
         label: 'Variables',
         further: '/docs/spec#variables',
         content: `$my_host: "127.0.0.1"
