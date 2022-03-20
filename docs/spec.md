@@ -12,8 +12,7 @@ sidebar_position: 3
 
 ## Comment
 
-A hash symbol marks the rest of the line as a comment, except when inside a
-string.
+A hash symbol (U+0023) marks the rest of the line as a comment, except when inside a string.
 
 ```yaml
 # This is a full-line comment
