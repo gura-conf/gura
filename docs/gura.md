@@ -1,5 +1,7 @@
 ---
 sidebar_position: 1
+description: 'Gura documentation introduction'
+keywords: ['Gura', 'Config lang', 'Gura documentation']
 ---
 
 

@@ -1,5 +1,7 @@
 ---
 sidebar_position: 4
+description: 'Tokenization process specifications for Gura tokenizers development'
+keywords: ['Tokenization', 'Tokenizers', 'Edition', 'Gura manipulation']
 ---
 
 # Tokenization
@@ -26,7 +28,7 @@ This document will specify all the structures to be considered in a document wri
 
 ## Tokenization structures
 
-But remember that the tokenization process must also include other technical aspects that are not part of the serialization/deserealization process. Instead, it must include components of the tokenized document that allow its manipulation while respecting the original structure. To do so, the following structs are introduced:
+But remember that the tokenization process must also include other technical aspects that are not part of the serialization/deserialization process. Instead, it must include components of the tokenized document that allow its manipulation while respecting the original structure. To do so, the following structs are introduced:
 
 - **Comment**: defines a comment. This, by definition, starts with the character `#` (U+0023) and all characters up to the end of the line are considered part of the comment. [Reference][comment-reference].
 - **Variables**: indicates the definition of a variable with its name and value. [Reference][variables-reference].
@@ -168,7 +170,7 @@ Even the final line break is considered since Gura would allow closing the array
 ## Important considerations
 
 There are some important considerations:
-- Unlike serialization/deserealization process, the initial structure cannot be an object since tokenization also considers elements that are not key/value pairs. That is why it consists of an array.
+- Unlike serialization/deserialization process, the initial structure cannot be an object since tokenization also considers elements that are not key/value pairs. That is why it consists of an array.
 - With the exception of line breaks within an array as [explained above](#about-spaces-in-arrays), only explicitly empty lines are considered as `BreakLine`, it should not be clarified after each element since the Gura definition does not allow the declaration of multiple key/value elements on the same line.
 - Trailing spaces at the beginning and end of both comments and strings must be considered.
 - Blanks on empty lines, whether tabs (U+0009) or spaces (U+0020), can be discarded as they do not contribute anything to the Gura structure.

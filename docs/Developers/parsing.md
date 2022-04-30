@@ -1,6 +1,8 @@
 ---
 title: Serialization/Deserialization
 sidebar_position: 2
+description: 'Serialization and deserialization process specifications for Gura parsers development'
+keywords: ['Serialization', 'Deserialization', 'Parsers']
 ---
 
 # Serialization/Deserialization

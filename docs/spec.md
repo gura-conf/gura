@@ -1,5 +1,7 @@
 ---
 sidebar_position: 3
+description: 'Gura configuration language specifications'
+keywords: ['Gura specs']
 ---
 
 # Specs

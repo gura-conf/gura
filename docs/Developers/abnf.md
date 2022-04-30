@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+description: 'Gura ABNF grammar'
 ---
 
 # ABNF grammar
