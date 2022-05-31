@@ -74,7 +74,7 @@ A key must be non-empty.
 : "no key name"  # INVALID
 ```
 
-Defining a key multiple times is invalid and it must raise a `DuplicatedKeyError` error.
+Defining a key multiple times is invalid and must raise a `DuplicatedKeyError` error.
 
 ```yaml
 # DO NOT DO THIS
@@ -85,7 +85,7 @@ name: "Anibal"
 
 ## Null
 
-The absence of value can be represented by the `null` value:
+The absence of a value can be represented by the `null` value:
 
 ```yaml
 none_value: null

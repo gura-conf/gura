@@ -22,7 +22,7 @@ Literal Keys were introduced in [Keys section][keys-section] to provide portabil
 
 ### Added a mechanism to make imports optional
 
-Now Gura specs state that implementations must provide a way to disable imports. This changed to avoid errors or security problems on environments without filesystem access or that are sensitive. Check [Imports section][import-section] to learn more.
+Now Gura specs state that implementations must provide a way to disable imports. This change avoids errors or security problems on environments without filesystem access or that are sensitive. Check [Imports section][import-section] to learn more.
 
 
 ### Changed behavior with invalid escaped sentences
