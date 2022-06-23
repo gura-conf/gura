@@ -179,7 +179,7 @@ There are some important considerations:
 - In order not to increase the complexity of the tokenization procedure, the standard space between the `:` and the value of a key/value pair is always 1, you may choose to keep a record with the `Space` structure if you wish, but it is not necessary.
 
 
-[parsing-section]: /docs/Developers/parsing#basic-types
+[parsing-section]: /docs/next/Developers/parsing#basic-types
 [comment-reference]: /docs/spec#comment
 [variables-reference]: /docs/spec#variables
 [imports-reference]: /docs/spec#imports
