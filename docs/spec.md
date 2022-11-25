@@ -528,7 +528,7 @@ key_2: """Config languages using variables:
     - $name"""
 ```
 
-Environment variables can be accessed using `$` sign too.
+**Environment variables** can be accessed using `$` sign too.
 
 ```yaml
 service:
@@ -544,7 +544,9 @@ $my_path: $PATH
 $PATH: "Another value"
 ```
 
-When a variable is used Gura looks for the definition in the current file and the imported ones. If it is not defined, checks for available environment variables, if it is not, it must raise a `VariableNotDefinedError` error.
+When a variable is used Gura looks for the definition in the current file and the imported ones. If it is not defined, checks for available environment variables, if it is not defined either, it must raise a `VariableNotDefinedError` error.
+
+To avoid security issues accessing environments variables in sensitive systems, each implementation must provide an ENV vars disabling mechanism. If they are disabled, only local variables will be considered, if not found the `VariableNotDefinedError` exception will be thrown.
 
 To use `$` in string just use literal or escape them:
 
@@ -572,8 +574,6 @@ some_key: "Some value"
 
 import "another_file.ura"  # INVALID: is not at the beginning of the file
 ```
-
-<!-- TODO: analyze require vs include https://www.w3schools.com/PHP/php_includes.asp -->
 
 A file can only be imported once. Re-importing a file must raise a `DuplicatedImportError` error.
 

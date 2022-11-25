@@ -22,7 +22,12 @@ Literal Keys were introduced in [Keys section][keys-section] to provide portabil
 
 ### Added a mechanism to make imports optional
 
-Now Gura specs state that implementations must provide a way to disable imports. This change avoids errors or security problems on environments without filesystem access or that are sensitive. Check [Imports section][import-section] to learn more.
+Now Gura specs state that implementations must provide a way to disable imports. This change avoids errors or security problems on environments without filesystem access or that are sensitive. It has been proposed that such variables be disabled by default in the [Developers documentation][developers-tool-parameters]. Check the [Imports section][import-section] to learn more.
+
+
+### Added a mechanism to make ENV vars optional
+
+For security reasons, it is possible to disable environment variables in Gura files in this new version. It has been proposed that such variables be disabled by default in the [Developers documentation][developers-tool-parameters]. Check the [Variables section][variables-section] to learn more.
 
 
 ### Changed behavior with invalid escaped sentences
@@ -44,3 +49,4 @@ Added a new [Developers section][developers-section] listing some useful convent
 [string-section]: spec#string
 [discussion-escape-chars]: https://github.com/gura-conf/gura/discussions/11
 [developers-section]: Developers/introduction
+[developers-tool-parameters]: Developers/parsing#tool-parameters
