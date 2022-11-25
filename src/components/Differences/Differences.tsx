@@ -80,7 +80,7 @@ const differences: DifferenceElem[] = [
 
 						<li>🚫 Standard errors: Gura defines the semantic errors that should be thrown in certain </li>situations. This way you get an implementation-agnostic definition and the developer can get the same type of error regardless of the programming language he/she is using.
 
-						<li>🥧 Gura is short and simple to learn and use since it follows the only one way to do it Python </li>maxim.
+						<li>🥧 Gura is short and simple to learn and use since it follows the only one way to do it Python maxim.</li>
 
 						<li>🌈 Writing a parser or wrapper for Gura in a new language should be a short and simple as well.</li>
 					</ul>

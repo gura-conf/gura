@@ -1,11 +1,13 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
+description: 'Gura conventions and license'
+keywords: ['File name extension', 'Conventions', 'MIME', 'ABNF', 'License']
 ---
 
 # Conventions
 
 
-## Filename Extension
+## Filename extension
 
 Gura files should use the extension `.ura`.
 
@@ -15,12 +17,12 @@ Gura files should use the extension `.ura`.
 As with keys, file names should have short, all-lowercase names and underscores can be used if it improves readability.
 
 
-## MIME Type
+## MIME type
 
 When transferring Gura files over the internet, the appropriate MIME type is `application/gura`.
 
 
-## ABNF Grammar
+## ABNF grammar
 
 A formal description of Gura's syntax is available in the [ABNF section][abnf].
 
@@ -30,4 +32,4 @@ A formal description of Gura's syntax is available in the [ABNF section][abnf].
 Gura is distributed under the terms of the MIT license.
 
 
-[abnf]: abnf.md
+[abnf]: Developers/abnf.md

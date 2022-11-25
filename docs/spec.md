@@ -1,5 +1,7 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
+description: 'Gura configuration language specifications'
+keywords: ['Gura specs']
 ---
 
 # Specs
@@ -12,8 +14,7 @@ sidebar_position: 2
 
 ## Comment
 
-A hash symbol marks the rest of the line as a comment, except when inside a
-string.
+A hash symbol (U+0023) marks the rest of the line as a comment, except when inside a string.
 
 ```yaml
 # This is a full-line comment
@@ -47,13 +48,13 @@ Values must have one of the following types.
 Unspecified values are invalid.
 
 ```yaml
-key: # INVALID
+key:  # INVALID
 ```
 
 There must be a newline (or EOF) after a key/value pair.
 
 ```
-first: "Carlitos" last: "Gardel" # INVALID
+first: "Carlitos" last: "Gardel"  # INVALID
 ```
 
 
@@ -74,7 +75,7 @@ A key must be non-empty.
 : "no key name"  # INVALID
 ```
 
-Defining a key multiple times is invalid and it must raise a `DuplicatedKeyError` error.
+Defining a key multiple times is invalid and must raise a `DuplicatedKeyError` error.
 
 ```yaml
 # DO NOT DO THIS
@@ -82,10 +83,28 @@ name: "Carlos"
 name: "Anibal"
 ```
 
+**Literal keys**
+
+Gura was created with simplicity, maintainability, and **portability** in mind. In a production environment, you will likely have to work with different tools that handle different configuration languages. To make Gura compatible with other configuration schemes, *Literal Keys* are provided, these are defined between grave accents `` ` `` (U+0060 GRAVE ACCENT) and can contain any valid UTF-8 character.
+
+If the `` ` `` character is required within a Literal Key, it must be escaped. Any character from the list in the [String section](#string) can be escaped inside Literal Keys too. If any other character that has not been previously mentioned is escaped, `InvalidEscapedCharacterError` must be raised, exactly as if it were a string.
+
+```yaml
+`a/literal.key!`: "Some value"
+`Escaped\`char\tWithTabs`: true
+`\invalid`: false  # INVALID: \i is not a valid escape sentence
+```
+
+:::caution
+
+The purpose of the Literal Keys is solely to provide compatibility with other configuration languages. **It is recommended to avoid them unless strictly necessary**, in order to maintain a clean and standardized configuration.
+
+:::
+
 
 ## Null
 
-The absence of value can be represented by the `null` value:
+The absence of a value can be represented by the `null` value:
 
 ```yaml
 none_value: null
@@ -121,7 +140,7 @@ For convenience, some popular characters have a compact escape sequence.
 
 Any Unicode character may be escaped with the `\uXXXX` or `\UXXXXXXXX` forms. The escape codes must be valid Unicode [scalar values](https://unicode.org/glossary/#unicode_scalar_value).
 
-All other escape sequences not listed above will be interpreted as literal.
+All other escape sequences not listed above are not valid and must raise `InvalidEscapedCharacterError`.
 
 Sometimes you need to express passages of text (e.g. translation files) or would like to break up a very long string into multiple lines. Gura makes this easy.
 
@@ -382,7 +401,7 @@ Finally, as empty values are not allowed, the following case considers any value
 
 ```yaml
 user:
-    name: # INVALID
+    name:  # INVALID
     surname: "Troilo"
 ```
 
@@ -471,19 +490,23 @@ singers: [
 
 ## Variables
 
-You can define variables. They start with a `$` sign, a name and a colon. A variable name has to respect the same regex as keys and only strings, numbers or other variable are allowed as values. If any of another kind of value type is used a parsing error must be raised.
+You can define variables. They start with a `$` sign, a name and a colon. A variable name has to respect the same regex as keys, and only basic types (null, strings, booleans, numbers, and `empty`) or another variable are allowed as values. If another value type is used, a parsing error must be raised.
 
 ```yaml
 $my_string_var: "127.0.0.1"
 $my_integer_var: 8080
+$my_bool_var: true
 
 nginx:
     host: $my_string_var
     port: $my_integer_var
+    ignore_warning: $my_bool_var
 
-$invalid_var: null # INVALID null is not allowed as variable value
-$invalid_var2: true # INVALID booleans are not allowed as variable value
-$invalid_var3: [ 1, 2, 3 ] # INVALID complex types such as arrays or objects are not allowed as variable value
+$invalid_var: [ 1, 2, 3 ]  # INVALID complex types such as arrays or objects are not allowed as variable value
+
+# INVALID complex types such as arrays or objects are not allowed as variable value
+$invalid_var_2: service:
+  name: "Service name"
 ```
 
 Variables can not be used as key.
@@ -491,7 +514,7 @@ Variables can not be used as key.
 ```yaml
 $hostkey: "host"
 nginx:
-    $hostkey : 4 # INVALID
+    $hostkey : 4  # INVALID
 ```
 
 Variables must be specified before they are used, in source code order. Redefining variables must raise a `DuplicatedVariableError` error, even when defined in different files (see [imports](#imports)). 
@@ -505,7 +528,7 @@ key_2: """Config languages using variables:
     - $name"""
 ```
 
-Environment variables can be accessed using `$` sign too.
+**Environment variables** can be accessed using `$` sign too.
 
 ```yaml
 service:
@@ -521,7 +544,9 @@ $my_path: $PATH
 $PATH: "Another value"
 ```
 
-When a variable is used Gura looks for the definition in the current file and the imported ones. If it is not defined, checks for available environment variables, if it is not, it must raise a `VariableNotDefinedError` error.
+When a variable is used Gura looks for the definition in the current file and the imported ones. If it is not defined, checks for available environment variables, if it is not defined either, it must raise a `VariableNotDefinedError` error.
+
+To avoid security issues accessing environments variables in sensitive systems, each implementation must provide an ENV vars disabling mechanism. If they are disabled, only local variables will be considered, if not found the `VariableNotDefinedError` exception will be thrown.
 
 To use `$` in string just use literal or escape them:
 
@@ -542,15 +567,13 @@ Imports must occur at the beginning of the file and there must be no blanks in f
 
 ```yaml
 import "another_file.ura" # Good
-  import "another_file.ura" # INVALID: there are blanks before import
-import   "another_file.ura" # INVALID: there are more than one whitespace between import and file name
+  import "another_file.ura"  # INVALID: there are blanks before import
+import   "another_file.ura"  # INVALID: there are more than one whitespace between import and file name
 
 some_key: "Some value"
 
-import "another_file.ura" # INVALID: is not at the beginning of the file
+import "another_file.ura"  # INVALID: is not at the beginning of the file
 ```
-
-<!-- TODO: analyze require vs include https://www.w3schools.com/PHP/php_includes.asp -->
 
 A file can only be imported once. Re-importing a file must raise a `DuplicatedImportError` error.
 
@@ -595,3 +618,9 @@ $common_path: "/extremely/long/path/to/some/useful/directory"
 import "$common_path/one.ura"
 import "$common_path/two.ura"
 ```
+
+To avoid errors in environments without filesystem access, prevent security problems in sensitive environments, or whatever the reason, each implementation must provide an import disabling mechanism. This flag must be part of the process of parsing a text string in Gura format to a structure useful for the implementation (e.g. a dictionary in Python, an object in Javascript, a HashMap in Java and Rust, etc).
+
+In case the user sets this flag to `true` it should not be possible to import Gura files into one, and any `import` statement encountered should throw `ImportDisabledError`. 
+
+This gives more control to the users to use Gura in the most efficient way for their requirements.

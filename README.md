@@ -9,7 +9,7 @@ Gura is a file format for *configuration files*. Gura is as **flexible as YAML**
 > This repository contains the source code of the Gura specification.
 > You can find the released versions at https://gura.netlify.app/.
 
-````yaml
+```yaml
 # This is a comment in a Gura configuration file.
 # Define a variable named `title` with string value "Gura Example"
 title: "Gura Example"
@@ -34,7 +34,7 @@ color_scheme:
     editor: $foreground
     ui:     $foreground
 
-````
+```
 The file extension for Gura is `ura`. We recommend the filename `config.ura` for main configuration files.
 
 To learn more about Gura, you can read the [Official Gura Documentation][specs].

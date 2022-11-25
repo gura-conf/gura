@@ -1,10 +1,11 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
+description: 'Gura ABNF grammar'
 ---
 
 # ABNF grammar
 
-This document describes Gura's syntax, using the ABNF format (defined in RFC 5234 -- https://www.ietf.org/rfc/rfc5234.txt).
+This document describes Gura's syntax, using the ABNF format (defined in [RFC 5234][rfc-523]).
 
 All valid Gura documents will match this description, however certain invalid documents would need to be rejected as per the semantics described in the supporting text description.
 
@@ -194,3 +195,6 @@ ALPHA = %x41-5A / %x61-7A ; A-Z / a-z
 DIGIT = %x30-39 ; 0-9
 HEXDIG = DIGIT / "A" / "B" / "C" / "D" / "E" / "F"
 ```
+
+
+[rfc-523]: https://www.ietf.org/rfc/rfc5234.txt
