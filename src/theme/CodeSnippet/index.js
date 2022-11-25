@@ -24,7 +24,7 @@ function CodeSnippet(props) {
     setMounted(true);
   }, []);
 
-  const { isDarkTheme } = useColorMode();
+  const isDarkTheme = useColorMode().colorMode === "dark";
   const lightModeTheme = prism.theme || monokai;
   const darkModeTheme = prism.darkTheme || lightModeTheme;
   const prismTheme = isDarkTheme ? darkModeTheme : lightModeTheme;
