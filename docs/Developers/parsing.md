@@ -50,8 +50,8 @@ As mentioned above in the *Basic types* section, it could be possible that some 
 
 The parameters to be used during serialization or deserialization functions are up to the developer. However, **two parameters are mandatory for all implementations seeking to comply with Gura version 2**:
 
-- **Disable imports during serialization**: a mechanism must be provided to disable `import` statements in Gura documents (check the [Imports section][import-section] to learn more). In case this mechanism is disabled, and the document contains an `import` sentence, an `ImportDisabledError` error must be thrown. **This option should be disabled by default**.
-- **Disable environment variables serialization**: a mechanism must be provided to disable the use of environment variables (check the [Variables section][variables-section] to learn more) and only consider variables local to the Gura document (including, if any, imported documents). In case this mechanism is disabled, and a local variable is not found a `VariableNotDefinedError` error must be thrown. **This option should be disabled by default**.
+- **Disable imports during serialization**: a mechanism must be provided to disable `import` statements in Gura documents (check the [Imports section][import-reference] to learn more). In case this mechanism is disabled, and the document contains an `import` sentence, an `ImportDisabledError` error must be thrown. **This option should be disabled by default**.
+- **Disable environment variables serialization**: a mechanism must be provided to disable the use of environment variables (check the [Variables section][variables-reference] to learn more) and only consider variables local to the Gura document (including, if any, imported documents). In case this mechanism is disabled, and a local variable is not found a `VariableNotDefinedError` error must be thrown. **This option should be disabled by default**.
 
 Both options ensure security in sensitive environments by preventing access to important system information. 
 
@@ -74,5 +74,5 @@ We encourage all developers to use the tests provided to corroborate the correct
 [implementations]: https://github.com/gura-conf/gura#library-implementations
 [error-reporting-tests]: https://github.com/gura-conf/testing/tree/main/error_reporting
 [testing-repository]: https://github.com/gura-conf/testing
-[import-section]: spec#imports
-[variables-section]: spec#variables
+[import-reference]: /docs/spec#imports
+[variables-reference]: /docs/spec#variables
